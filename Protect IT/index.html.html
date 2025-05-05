@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Dam Watch Cards Assessment</title>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.2);
+            --dark-1: #1a1a1a;
+            --dark-2: #2a2a2a;
+            --dark-3: #333333;
+            --strong-color: #2c6e49;
+            --leaking-color: #be6a15;
+            --missing-color: #9e2a2b;
+            --uncharted-color: #5e548e;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+        }
+        
+        h1, h2, h3 {
+            color: var(--text-primary);
+        }
+        
+        h1 {
+            text-align: center;
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px var(--accent-gold-glow);
+        }
+        
+        .container {
+            background: var(--dark-1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 25px;
+            border: 1px solid var(--dark-3);
+        }
+        
+        .btn {
+            background-color: var(--dark-2);
+            color: var(--text-primary);
+            border: 1px solid var(--accent-gold);
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--dark-1);
+            box-shadow: 0 0 10px var(--accent-gold-glow);
+        }
+        
+        /* Watch Card Styling */
+        .watch-card {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            margin: 0 auto 30px;
+            perspective: 1000px;
+        }
+        
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background: var(--bg-card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--dark-3);
+        }
+        
+        .card-header {
+            background: var(--dark-2);
+            color: var(--text-primary);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--accent-gold);
+        }
+        
+        .card-header .icon {
+            font-size: 28px;
+            margin-right: 10px;
+        }
+        
+        .card-header .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-question {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .card-importance {
+            font-size: 14px;
+            background-color: var(--dark-2);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: auto;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent-gold);
+        }
+        
+        .card-suite {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 22px;
+            color: var(--accent-gold);
+            text-shadow: 0 0 5px var(--accent-gold-glow);
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-shadow: 0 0 5px var(--accent-gold-glow);
+        }
+        
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        .btn-strong {
+            background-color: var(--dark-2);
+            border-color: var(--strong-color);
+            color: var(--text-primary);
+        }
+        
+        .btn-leaking {
+            background-color: var(--dark-2);
+            border-color: var(--leaking-color);
+            color: var(--text-primary);
+        }
+        
+        .btn-missing {
+            background-color: var(--dark-2);
+            border-color: var(--missing-color);
+            color: var(--text-primary);
+        }
+        
+        .btn-uncharted {
+            background-color: var(--dark-2);
+            border-color: var(--uncharted-color);
+            color: var(--text-primary);
+        }
+        
+        .btn-strong:hover {
+            background-color: var(--strong-color);
+            box-shadow: 0 0 10px rgba(44, 110, 73, 0.5);
+        }
+        
+        .btn-leaking:hover {
+            background-color: var(--leaking-color);
+            box-shadow: 0 0 10px rgba(190, 106, 21, 0.5);
+        }
+        
+        .btn-missing:hover {
+            background-color: var(--missing-color);
+            box-shadow: 0 0 10px rgba(158, 42, 43, 0.5);
+        }
+        
+        .btn-uncharted:hover {
+            background-color: var(--uncharted-color);
+            box-shadow: 0 0 10px rgba(94, 84, 142, 0.5);
+        }
+        
+        .progress {
+            height: 8px;
+            background-color: var(--dark-2);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent-gold);
+            width: 0%;
+            transition: width 0.3s;
+            box-shadow: 0 0 5px var(--accent-gold-glow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--dark-3);
+            border-radius: 4px;
+            background-color: var(--dark-2);
+            color: var(--text-primary);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 5px var(--accent-gold-glow);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .result-section {
+            margin-bottom: 30px;
+        }
+        
+        .result-section h3 {
+            border-bottom: 1px solid var(--dark-3);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .result-card {
+            background-color: var(--dark-2);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-gold);
+        }
+        
+        .guardian-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .guardian-icon {
+            font-size: 28px;
+        }
+        
+        .guardian-info h4 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .guardian-price {
+            color: var(--accent-gold);
+            font-size: 14px;
+        }
+        
+        .guardian-issues {
+            margin-top: 12px;
+        }
+        
+        .issue-tag {
+            display: inline-block;
+            background-color: var(--dark-3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border: 1px solid var(--accent-gold);
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .status-box {
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--dark-3);
+        }
+        
+        .status-box h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .status-box-strong {
+            background-color: rgba(44, 110, 73, 0.2);
+            border-left: 3px solid var(--strong-color);
+        }
+        
+        .status-box-leaking {
+            background-color: rgba(190, 106, 21, 0.2);
+            border-left: 3px solid var(--leaking-color);
+        }
+        
+        .status-box-missing {
+            background-color: rgba(158, 42, 43, 0.2);
+            border-left: 3px solid var(--missing-color);
+        }
+        
+        .status-box-uncharted {
+            background-color: rgba(94, 84, 142, 0.2);
+            border-left: 3px solid var(--uncharted-color);
+        }
+        
+        .status-count {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .status-label {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .status-category-strong {
+            color: var(--strong-color);
+        }
+        
+        .status-category-leaking {
+            color: var(--leaking-color);
+        }
+        
+        .status-category-missing {
+            color: var(--missing-color);
+        }
+        
+        .status-category-uncharted {
+            color: var(--uncharted-color);
+        }
+        
+        .category-box {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: var(--dark-2);
+        }
+        
+        @media (min-width: 768px) {
+            .btn-group {
+                width: 280px;
+                margin: 20px auto 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>The Digital Dam™ Watch Cards</h1>
+    
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="container">
+        <h2>Is Your Business Protected?</h2>
+        <p>Just as a beaver inspects its dam for weaknesses, this quick assessment will identify vulnerabilities in your digital protection. Review 10 security watch cards to see how well your business would withstand today's cyber threats.</p>
+        
+        <h3>How to use:</h3>
+        <p>For each security card, select one of the following options:</p>
+        <div class="status-grid">
+            <div class="category-box">
+                <strong class="status-category-strong">STRONG</strong>
+                <p style="margin: 5px 0 0;">You have this protection and it works well</p>
+            </div>
+            <div class="category-box">
+                <strong class="status-category-leaking">LEAKING</strong>
+                <p style="margin: 5px 0 0;">You have it but it's not fully effective</p>
+            </div>
+            <div class="category-box">
+                <strong class="status-category-missing">MISSING</strong>
+                <p style="margin: 5px 0 0;">You don't have this protection</p>
+            </div>
+            <div class="category-box">
+                <strong class="status-category-uncharted">UNCHARTED</strong>
+                <p style="margin: 5px 0 0;">You're not familiar with this concept</p>
+            </div>
+        </div>
+        
+        <button id="start-btn" class="btn">Start Assessment</button>
+    </div>
+    
+    <!-- Assessment Screen -->
+    <div id="assessment-screen" class="hidden">
+        <div class="container">
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                <div id="question-counter">Card 1 of 10</div>
+                <div id="score-display">Current Score: 0</div>
+            </div>
+            
+            <div class="watch-card">
+                <div class="card-inner">
+                    <span id="card-suite" class="card-suite">♠</span>
+                    <span id="card-number" class="card-number">A</span>
+                    
+                    <div class="card-header">
+                        <span id="card-icon" class="icon">🎣</span>
+                        <span id="card-title" class="title">Email Security</span>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div id="card-question" class="card-question">
+                            Does your business have protection against phishing beyond basic spam filters?
+                        </div>
+                        <div id="card-importance" class="card-importance">
+                            Why It Matters: 72% of Canadian small businesses experienced cyber attacks in 2024, with phishing emails as the primary entry point.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-strong" data-action="strong">Strong</button>
+                <button class="btn btn-leaking" data-action="leaking">Leaking</button>
+                <button class="btn btn-missing" data-action="missing">Missing</button>
+                <button class="btn btn-uncharted" data-action="uncharted">Uncharted</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Screen -->
+    <div id="contact-screen" class="hidden container">
+        <h2>Just One More Step!</h2>
+        <p>Enter your information to get your personalized security recommendations.</p>
+        
+        <div id="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone">
+            </div>
+            
+            <button id="submit-contact" class="btn">Get My Results</button>
+        </div>
+    </div>
+    
+    <!-- Results Screen -->
+    <div id="results-screen" class="hidden">
+        <div class="container">
+            <h2>Your Digital Dam™ Results</h2>
+            
+            <div class="result-section">
+                <h3>Your Security Score: <span id="final-score">0</span>/30</h3>
+                <div class="progress">
+                    <div id="results-progress-bar" class="progress-bar"></div>
+                </div>
+                <div id="risk-level" style="text-align: center; margin-top: 15px; font-size: 18px; font-weight: bold;"></div>
+            </div>
+            
+            <div class="result-section">
+                <h3>Security Breakdown</h3>
+                <div class="status-grid">
+                    <div class="status-box status-box-strong">
+                        <h4 class="status-category-strong">Strong</h4>
+                        <p class="status-count"><span id="strong-count">0</span></p>
+                        <p class="status-label">Keep maintaining these protections</p>
+                    </div>
+                    <div class="status-box status-box-leaking">
+                        <h4 class="status-category-leaking">Leaking</h4>
+                        <p class="status-count"><span id="leaking-count">0</span></p>
+                        <p class="status-label">Need improvement to be effective</p>
+                    </div>
+                    <div class="status-box status-box-missing">
+                        <h4 class="status-category-missing">Missing</h4>
+                        <p class="status-count"><span id="missing-count">0</span></p>
+                        <p class="status-label">Critical protections you don't have</p>
+                    </div>
+                    <div class="status-box status-box-uncharted">
+                        <h4 class="status-category-uncharted">Uncharted</h4>
+                        <p class="status-count"><span id="uncharted-count">0</span></p>
+                        <p class="status-label">Security areas to learn about</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-section">
+                <h3>Recommended Guardians</h3>
+                <div id="recommendations-container">
+                    <!-- Recommendations will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="result-section result-card" style="background-color: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--accent-gold);">
+                <h3 style="margin-top: 0; border-bottom: none; color: var(--accent-gold);">Next Steps</h3>
+                <p>Schedule your free 30-minute consultation to discuss how to strengthen your Digital Dam™ and protect your business from cyber threats.</p>
+                <button id="schedule-btn" class="btn" style="width: 100%; margin-top: 15px;">Schedule Consultation</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Security watch cards data
+        const watchCards = [
+            {
+                suite: "♠",
+                number: "5",
+                icon: "🎣",
+                title: "Email Security",
+                question: "Does your business have protection against phishing beyond basic spam filters?",
+                importance: "Why It Matters: 72% of Canadian small businesses experienced cyber attacks in 2024, with phishing emails as the primary entry point. A single successful phishing attack costs the average small business $36,000.",
+                guardian: "mPhish"
+            },
+            {
+                suite: "♠",
+                number: "4",
+                icon: "🔐",
+                title: "Multi-Factor Authentication",
+                question: "Is MFA enabled for all critical business accounts, including email, cloud services, and financial platforms?",
+                importance: "Why It Matters: Only 20% of small businesses have implemented MFA, yet it reduces account compromise risk by over 90%.",
+                guardian: "mCloud"
+            },
+            {
+                suite: "♠",
+                number: "9",
+                icon: "💾",
+                title: "Data Backup & Recovery",
+                question: "Do you have automated, encrypted backups stored away from your main systems?",
+                importance: "Why It Matters: 42% of Alberta small businesses don't back up data regularly. Build your ark before the flood, not during it.",
+                guardian: "mCyber"
+            },
+            {
+                suite: "♠",
+                number: "7",
+                icon: "🛡️",
+                title: "Endpoint Protection",
+                question: "Do your devices have modern security that goes beyond basic antivirus?",
+                importance: "Why It Matters: Small Alberta businesses face sophisticated attacks every 11 seconds. Traditional antivirus catches less than 60% of modern threats.",
+                guardian: "mCyber"
+            },
+            {
+                suite: "♠",
+                number: "8",
+                icon: "🔍",
+                title: "Security Monitoring",
+                question: "Is someone watching your systems 24/7 for suspicious activity?",
+                importance: "Why It Matters: The average breach takes 204 days to discover. That's 9 months of someone rifling through your digital drawers. Early detection can reduce breach costs by over 70%.",
+                guardian: "mMonitor"
+            },
+            {
+                suite: "♠",
+                number: "K",
+                icon: "🚨",
+                title: "Incident Response Plan",
+                question: "Do you have a written plan for when security incidents happen?",
+                importance: "Why It Matters: Know where the fire extinguishers are BEFORE something starts burning. Most businesses waste 3 critical hours just figuring out what to do first. Organizations with incident response plans reduce breach costs by an average of 54%.",
+                guardian: "mCyber"
+            },
+            {
+                suite: "♣",
+                number: "J",
+                icon: "👨‍💻",
+                title: "Security Awareness Training",
+                question: "Are your employees being trained continuously on security basics?",
+                importance: "Why It Matters: 95% of breaches start with human error. Monthly training reduces security incidents by up to 70%.",
+                guardian: "mPhish"
+            },
+            {
+                suite: "♠",
+                number: "2",
+                icon: "🔑",
+                title: "Password Management",
+                question: "Does your company and employees use an enterprise password manager?",
+                importance: "Why It Matters: 80% of small business breaches involve compromised credentials. The average employee reuses passwords across 13 different services.",
+                guardian: "mPassword"
+            },
+            {
+                suite: "♣",
+                number: "10",
+                icon: "📝",
+                title: "PIPA Compliance",
+                question: "Is your business fully compliant with Alberta's Personal Information Protection Act (PIPA) requirements for data handling and breach notification?",
+                importance: "Why it matters: Non-compliance with PIPA can result in fines up to $100,000 for organizations, plus legal challenges and reputational damage.",
+                guardian: "mCompliance"
+            },
+            {
+                suite: "♠",
+                number: "6",
+                icon: "🔍",
+                title: "Vulnerability Management",
+                question: "Do you regularly check for security holes in your systems?",
+                importance: "Why It Matters: 60% of breaches involve unpatched vulnerabilities. It's like leaving your door unlocked because installing the new lock seems inconvenient. Software has flaws. Better you find them before criminals do.",
+                guardian: "mCompute"
+            }
+        ];
+
+        // Guardian descriptions for recommendations
+        const guardians = {
+            "mPhish": {
+                name: "Threat Trainer",
+                description: "Ongoing security training and phishing simulations for your team",
+                icon: "🐠",
+                price: "$30/user/month"
+            },
+            "mCyber": {
+                name: "Crisis Controller",
+                description: "Core security platform with incident response",
+                icon: "🦫",
+                price: "$50/user/month"
+            },
+            "mCloud": {
+                name: "Cloud Commander",
+                description: "Secures your cloud services and implements MFA",
+                icon: "🦅",
+                price: "$75/org + $75/human"
+            },
+            "mPassword": {
+                name: "Password Protector",
+                description: "Enterprise password management solution",
+                icon: "🔑",
+                price: "$12/user/month"
+            },
+            "mMonitor": {
+                name: "Night Watcher",
+                description: "24/7 security monitoring and alerts",
+                icon: "🦉",
+                price: "$10/asset/month"
+            },
+            "mCompute": {
+                name: "Hardware Hunter",
+                description: "Endpoint protection and vulnerability management",
+                icon: "🐺",
+                price: "$75/workstation"
+            },
+            "mCompliance": {
+                name: "Regulation Ranger",
+                description: "Compliance management and documentation",
+                icon: "🐢",
+                price: "$975 + $475/framework"
+            }
+        };
+
+        // Application state
+        let state = {
+            currentIndex: 0,
+            score: 0,
+            results: {
+                strong: [],
+                leaking: [],
+                missing: [],
+                uncharted: []
+            },
+            user: {
+                name: "",
+                email: "",
+                company: "",
+                phone: ""
+            }
+        };
+
+        // DOM Elements - screens
+        const introScreen = document.getElementById('intro-screen');
+        const assessmentScreen = document.getElementById('assessment-screen');
+        const contactScreen = document.getElementById('contact-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        // DOM Elements - assessment
+        const questionCounter = document.getElementById('question-counter');
+        const scoreDisplay = document.getElementById('score-display');
+        const progressBar = document.getElementById('progress-bar');
+        const cardSuite = document.getElementById('card-suite');
+        const cardNumber = document.getElementById('card-number');
+        const cardIcon = document.getElementById('card-icon');
+        const cardTitle = document.getElementById('card-title');
+        const cardQuestion = document.getElementById('card-question');
+        const cardImportance = document.getElementById('card-importance');
+        
+        // DOM Elements - results
+        const finalScore = document.getElementById('final-score');
+        const resultsProgressBar = document.getElementById('results-progress-bar');
+        const riskLevel = document.getElementById('risk-level');
+        const strongCount = document.getElementById('strong-count');
+        const leakingCount = document.getElementById('leaking-count');
+        const missingCount = document.getElementById('missing-count');
+        const unchartedCount = document.getElementById('uncharted-count');
+        const recommendationsContainer = document.getElementById('recommendations-container');
+        
+        // Initialize
+        window.onload = function() {
+            console.log("Window loaded - setting up event listeners");
+            
+            // Set up event listeners
+            document.getElementById('start-btn').addEventListener('click', startAssessment);
+            document.getElementById('submit-contact').addEventListener('click', handleContactSubmit);
+            document.getElementById('schedule-btn').addEventListener('click', scheduleConsultation);
+            
+            // Set up action buttons
+            const actionButtons = document.querySelectorAll('[data-action]');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    handleCardAction(action);
+                });
+            });
+        };
+
+        // Start assessment
+        function startAssessment() {
+            console.log("Starting assessment");
+            introScreen.classList.add('hidden');
+            assessmentScreen.classList.remove('hidden');
+            loadCard(0);
+        }
+
+        // Load card data
+        function loadCard(index) {
+            console.log("Loading card", index);
+            
+            if (index >= watchCards.length) {
+                // Assessment complete, show contact form
+                assessmentScreen.classList.add('hidden');
+                contactScreen.classList.remove('hidden');
+                return;
+            }
+            
+            const card = watchCards[index];
+            
+            // Update card content
+            cardSuite.textContent = card.suite;
+            cardNumber.textContent = card.number;
+            cardIcon.textContent = card.icon;
+            cardTitle.textContent = card.title;
+            cardQuestion.textContent = card.question;
+            cardImportance.textContent = card.importance;
+            
+            // Update progress
+            questionCounter.textContent = `Card ${index + 1} of ${watchCards.length}`;
+            progressBar.style.width = `${((index) / watchCards.length) * 100}%`;
+            
+            // Update state
+            state.currentIndex = index;
+        }
+
+        // Handle card action
+        function handleCardAction(action) {
+            console.log("Card action:", action);
+            
+            // Map actions to points
+            const points = {
+                'strong': 0,
+                'leaking': 1,
+                'missing': 2,
+                'uncharted': 3
+            };
+            
+            // Add card to results
+            state.results[action].push(state.currentIndex);
+            
+            // Update score
+            state.score += points[action];
+            scoreDisplay.textContent = `Current Score: ${state.score}`;
+            
+            // Load next card
+            loadCard(state.currentIndex + 1);
+        }
+
+        // Handle contact form submission
+        function handleContactSubmit(event) {
+            console.log("Contact form submitted");
+            
+            // Get form data
+            state.user = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                phone: document.getElementById('phone').value
+            };
+            
+            // Validate form (simple validation)
+            if (!state.user.name || !state.user.email || !state.user.company) {
+                alert("Please fill in all required fields");
+                return;
+            }
+            
+            // Submit to Airtable (would be implemented with actual API call)
+            submitToAirtable();
+            
+            // Show results screen
+            contactScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            
+            // Display results
+            displayResults();
+        }
+
+        // Submit data to Airtable
+        function submitToAirtable() {
+            console.log('Submitting to Airtable:', {
+                user: state.user,
+                score: state.score,
+                results: state.results
+            });
+            
+            // In production, this would be an actual API call to Airtable
+            // Example:
+            // fetch('https://api.airtable.com/v0/YOUR_BASE_ID/YOUR_TABLE_NAME', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Authorization': 'Bearer YOUR_API_KEY',
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         fields: {
+            //             Name: state.user.name,
+            //             Email: state.user.email,
+            //             Company: state.user.company,
+            //             Phone: state.user.phone,
+            //             Score: state.score,
+            //             Strong: state.results.strong.length,
+            //             Leaking: state.results.leaking.length,
+            //             Missing: state.results.missing.length,
+            //             Uncharted: state.results.uncharted.length,
+            //             Results: JSON.stringify(state.results)
+            //         }
+            //     })
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log('Airtable Success:', data))
+            // .catch(error => console.error('Airtable Error:', error));
+        }
+
+        // Display results
+        function displayResults() {
+            console.log("Displaying results");
+            
+            // Update score
+            finalScore.textContent = state.score;
+            
+            // Set risk level
+            let riskLevelText, riskColor, progressPercent;
+            
+            if (state.score <= 5) {
+                riskLevelText = "SAFE - Your security posture is strong";
+                riskColor = "#2c6e49";
+                progressPercent = "80%";
+            } else if (state.score <= 12) {
+                riskLevelText = "CAUTION - Your security needs improvement";
+                riskColor = "#be6a15";
+                progressPercent = "60%";
+            } else if (state.score <= 19) {
+                riskLevelText = "DANGER - Significant vulnerabilities exist";
+                riskColor = "#9e2a2b";
+                progressPercent = "40%";
+            } else {
+                riskLevelText = "CRITICAL - Your business is at extreme risk";
+                riskColor = "#9e2a2b";
+                progressPercent = "20%";
+            }
+            
+            riskLevel.textContent = riskLevelText;
+            riskLevel.style.color = riskColor;
+            resultsProgressBar.style.width = progressPercent;
+            
+            // Update counts
+            strongCount.textContent = state.results.strong.length;
+            leakingCount.textContent = state.results.leaking.length;
+            missingCount.textContent = state.results.missing.length;
+            unchartedCount.textContent = state.results.uncharted.length;
+            
+            // Generate recommendations
+            generateRecommendations();
+        }
+
+        // Generate recommendations
+        function generateRecommendations() {
+            recommendationsContainer.innerHTML = '';
+            
+            // Combine issues that need attention
+            const issues = [...state.results.missing, ...state.results.uncharted, ...state.results.leaking];
+            
+            // Create a map to track which guardians are needed
+            const neededGuardians = new Map();
+            
+            // Process each issue
+            issues.forEach(index => {
+                const card = watchCards[index];
+                const guardian = card.guardian;
+                
+                // Add to needed guardians if not already tracked
+                if (!neededGuardians.has(guardian)) {
+                    neededGuardians.set(guardian, [index]);
+                } else {
+                    neededGuardians.get(guardian).push(index);
+                }
+            });
+            
+            // Generate recommendation cards
+            if (neededGuardians.size === 0) {
+                const message = document.createElement('div');
+                message.className = 'result-card';
+                message.style.backgroundColor = 'rgba(44, 110, 73, 0.1)';
+                message.style.borderLeft = '3px solid var(--strong-color)';
+                message.innerHTML = `
+                    <h4 style="color: var(--strong-color); margin-top: 0;">Excellent Protection!</h4>
+                    <p>Your security posture is strong across all areas. Schedule a consultation to discuss how to maintain your excellent security stance.</p>
+                `;
+                recommendationsContainer.appendChild(message);
+                return;
+            }
+            
+            neededGuardians.forEach((issues, guardianKey) => {
+                const guardian = guardians[guardianKey];
+                
+                // Create recommendation card
+                const card = document.createElement('div');
+                card.className = 'result-card';
+                
+                // Guardian header
+                const guardianHeader = document.createElement('div');
+                guardianHeader.className = 'guardian-header';
+                guardianHeader.innerHTML = `
+                    <div class="guardian-icon">${guardian.icon}</div>
+                    <div class="guardian-info">
+                        <h4>${guardian.name}</h4>
+                        <div class="guardian-price">${guardian.price}</div>
+                    </div>
+                `;
+                
+                // Guardian description
+                const guardianDesc = document.createElement('p');
+                guardianDesc.textContent = guardian.description;
+                
+                // Issues this guardian addresses
+                const issuesTitle = document.createElement('p');
+                issuesTitle.textContent = "Addresses:";
+                issuesTitle.style.marginTop = "10px";
+                issuesTitle.style.marginBottom = "5px";
+                issuesTitle.style.fontWeight = "bold";
+                
+                // Create issues container
+                const issuesContainer = document.createElement('div');
+                issuesContainer.className = 'guardian-issues';
+                
+                // Add issue tags
+                issues.forEach(index => {
+                    const card = watchCards[index];
+                    const issueTag = document.createElement('span');
+                    issueTag.className = 'issue-tag';
+                    issueTag.textContent = card.title;
+                    issuesContainer.appendChild(issueTag);
+                });
+                
+                // Assemble card
+                card.appendChild(guardianHeader);
+                card.appendChild(guardianDesc);
+                card.appendChild(issuesTitle);
+                card.appendChild(issuesContainer);
+                recommendationsContainer.appendChild(card);
+            });
+        }
+
+        // Schedule consultation
+        function scheduleConsultation(event) {
+            event.preventDefault();
+            alert("In production, this would open your scheduling tool.");
+        }
+    </script>
+</body>
+</html>
