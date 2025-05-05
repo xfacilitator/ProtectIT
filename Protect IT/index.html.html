@@ -3,118 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Dam Watch Cards Assessment</title>
+    <title>ShieldScan: The Small Business Protection Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #121212;
-            --bg-card: #1e1e1e;
-            --text-primary: #e0e0e0;
+            --bg-dark: #0c0c0e;
+            --bg-card: #181820;
+            --text-primary: #f0f0f0;
             --text-secondary: #a0a0a0;
             --accent-gold: #d4af37;
-            --accent-gold-glow: rgba(212, 175, 55, 0.2);
-            --dark-1: #1a1a1a;
-            --dark-2: #2a2a2a;
-            --dark-3: #333333;
+            --accent-gold-glow: rgba(212, 175, 55, 0.15);
+            --dark-1: #141418;
+            --dark-2: #1e1e24;
+            --dark-3: #292933;
             --strong-color: #2c6e49;
             --leaking-color: #be6a15;
             --missing-color: #9e2a2b;
             --uncharted-color: #5e548e;
+            --card-width: 320px;
+            --card-height: 450px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
             background-color: var(--bg-dark);
             color: var(--text-primary);
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(30, 30, 40, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(30, 30, 40, 0.2) 0%, transparent 50%);
         }
         
         h1, h2, h3 {
             color: var(--text-primary);
+            font-weight: 600;
         }
         
         h1 {
             text-align: center;
-            border-bottom: 1px solid var(--accent-gold);
-            padding-bottom: 10px;
+            padding-bottom: 16px;
             margin-bottom: 30px;
             color: var(--accent-gold);
-            text-shadow: 0 0 10px var(--accent-gold-glow);
+            text-shadow: 0 0 15px var(--accent-gold-glow);
+            position: relative;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
         
         .container {
             background: var(--dark-1);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 25px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
             border: 1px solid var(--dark-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold-glow), transparent);
+            opacity: 0.4;
         }
         
         .btn {
             background-color: var(--dark-2);
             color: var(--text-primary);
             border: 1px solid var(--accent-gold);
-            padding: 12px 20px;
-            border-radius: 5px;
+            padding: 14px 24px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: 500;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .btn:hover {
-            background-color: var(--accent-gold);
-            color: var(--dark-1);
-            box-shadow: 0 0 10px var(--accent-gold-glow);
+            background-color: var(--dark-3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-subtext {
+            font-size: 12px;
+            margin-top: 4px;
+            color: var(--text-secondary);
+            font-weight: 300;
         }
         
         /* Watch Card Styling */
         .watch-card {
             position: relative;
-            width: 280px;
-            height: 380px;
-            margin: 0 auto 30px;
-            perspective: 1000px;
+            width: var(--card-width);
+            height: var(--card-height);
+            margin: 0 auto 35px;
+            perspective: 1200px;
         }
         
         .card-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7),
+                        0 0 10px var(--accent-gold-glow);
             background: var(--bg-card);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             border: 1px solid var(--dark-3);
+            transition: transform 0.3s ease;
+        }
+        
+        .watch-card:hover .card-inner {
+            transform: translateY(-5px);
         }
         
         .card-header {
             background: var(--dark-2);
             color: var(--text-primary);
-            padding: 15px;
+            padding: 18px;
             text-align: center;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             border-bottom: 1px solid var(--accent-gold);
+            position: relative;
+        }
+        
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold-glow), transparent);
         }
         
         .card-header .icon {
-            font-size: 28px;
-            margin-right: 10px;
+            font-size: 32px;
+            margin-right: 16px;
+            margin-left: 16px;
         }
         
         .card-header .title {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .card-content {
-            padding: 20px;
+            padding: 24px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -122,130 +222,166 @@
         
         .card-question {
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             color: var(--text-primary);
+            line-height: 1.5;
         }
         
         .card-importance {
-            font-size: 14px;
+            font-size: 15px;
             background-color: var(--dark-2);
-            padding: 15px;
-            border-radius: 5px;
+            padding: 18px;
+            border-radius: 10px;
             margin-top: auto;
             color: var(--text-secondary);
             border-left: 3px solid var(--accent-gold);
+            line-height: 1.6;
+        }
+        
+        .card-corner {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(30, 30, 38, 0.7);
+            padding: 6px 10px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
         
         .card-suite {
-            position: absolute;
-            top: 15px;
-            left: 15px;
             font-size: 22px;
             color: var(--accent-gold);
-            text-shadow: 0 0 5px var(--accent-gold-glow);
+            text-shadow: 0 0 8px var(--accent-gold-glow);
         }
         
         .card-number {
-            position: absolute;
-            top: 15px;
-            right: 15px;
             font-size: 22px;
-            font-weight: bold;
+            font-weight: 600;
             color: var(--accent-gold);
-            text-shadow: 0 0 5px var(--accent-gold-glow);
+            text-shadow: 0 0 8px var(--accent-gold-glow);
         }
         
         .btn-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: var(--card-width);
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .btn-strong {
-            background-color: var(--dark-2);
+            background-color: rgba(44, 110, 73, 0.15);
             border-color: var(--strong-color);
             color: var(--text-primary);
         }
         
         .btn-leaking {
-            background-color: var(--dark-2);
+            background-color: rgba(190, 106, 21, 0.15);
             border-color: var(--leaking-color);
             color: var(--text-primary);
         }
         
         .btn-missing {
-            background-color: var(--dark-2);
+            background-color: rgba(158, 42, 43, 0.15);
             border-color: var(--missing-color);
             color: var(--text-primary);
         }
         
         .btn-uncharted {
-            background-color: var(--dark-2);
+            background-color: rgba(94, 84, 142, 0.15);
             border-color: var(--uncharted-color);
             color: var(--text-primary);
         }
         
         .btn-strong:hover {
-            background-color: var(--strong-color);
-            box-shadow: 0 0 10px rgba(44, 110, 73, 0.5);
+            background-color: rgba(44, 110, 73, 0.3);
+            box-shadow: 0 0 15px rgba(44, 110, 73, 0.3);
         }
         
         .btn-leaking:hover {
-            background-color: var(--leaking-color);
-            box-shadow: 0 0 10px rgba(190, 106, 21, 0.5);
+            background-color: rgba(190, 106, 21, 0.3);
+            box-shadow: 0 0 15px rgba(190, 106, 21, 0.3);
         }
         
         .btn-missing:hover {
-            background-color: var(--missing-color);
-            box-shadow: 0 0 10px rgba(158, 42, 43, 0.5);
+            background-color: rgba(158, 42, 43, 0.3);
+            box-shadow: 0 0 15px rgba(158, 42, 43, 0.3);
         }
         
         .btn-uncharted:hover {
-            background-color: var(--uncharted-color);
-            box-shadow: 0 0 10px rgba(94, 84, 142, 0.5);
+            background-color: rgba(94, 84, 142, 0.3);
+            box-shadow: 0 0 15px rgba(94, 84, 142, 0.3);
         }
         
         .progress {
             height: 8px;
             background-color: var(--dark-2);
-            border-radius: 5px;
-            margin-bottom: 20px;
+            border-radius: 4px;
+            margin-bottom: 24px;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
         }
         
         .progress-bar {
             height: 100%;
-            background-color: var(--accent-gold);
+            background: linear-gradient(90deg, #d4af37, #f2d475);
             width: 0%;
-            transition: width 0.3s;
-            box-shadow: 0 0 5px var(--accent-gold-glow);
+            transition: width 0.5s;
+            box-shadow: 0 0 10px var(--accent-gold-glow);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            position: relative;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+            margin-bottom: 10px;
+            font-weight: 500;
             color: var(--text-primary);
         }
         
         .form-group input {
             width: 100%;
-            padding: 12px;
+            padding: 14px 16px;
             border: 1px solid var(--dark-3);
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: var(--dark-2);
             color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
         }
         
         .form-group input:focus {
             outline: none;
             border-color: var(--accent-gold);
-            box-shadow: 0 0 5px var(--accent-gold-glow);
+            box-shadow: 0 0 10px var(--accent-gold-glow);
         }
         
         .hidden {
@@ -253,101 +389,140 @@
         }
         
         .result-section {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         
         .result-section h3 {
             border-bottom: 1px solid var(--dark-3);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .result-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-gold);
         }
         
         .result-card {
             background-color: var(--dark-2);
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            padding: 24px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             border-left: 3px solid var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-3px);
         }
         
         .guardian-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 16px;
+            margin-bottom: 16px;
         }
         
         .guardian-icon {
-            font-size: 28px;
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--dark-3);
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
         
         .guardian-info h4 {
             margin: 0;
             color: var(--text-primary);
+            font-size: 20px;
         }
         
         .guardian-price {
             color: var(--accent-gold);
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 500;
         }
         
         .guardian-issues {
-            margin-top: 12px;
+            margin-top: 16px;
         }
         
         .issue-tag {
             display: inline-block;
             background-color: var(--dark-3);
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
-            margin-right: 8px;
-            margin-bottom: 8px;
+            margin-right: 10px;
+            margin-bottom: 10px;
             font-size: 14px;
             color: var(--text-secondary);
             border: 1px solid var(--accent-gold);
+            transition: all 0.3s;
+        }
+        
+        .issue-tag:hover {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--text-primary);
         }
         
         .status-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
         
         .status-box {
-            padding: 15px;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 10px;
             border: 1px solid var(--dark-3);
+            transition: transform 0.3s;
+        }
+        
+        .status-box:hover {
+            transform: translateY(-3px);
         }
         
         .status-box h4 {
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 18px;
         }
         
         .status-box-strong {
-            background-color: rgba(44, 110, 73, 0.2);
+            background-color: rgba(44, 110, 73, 0.15);
             border-left: 3px solid var(--strong-color);
         }
         
         .status-box-leaking {
-            background-color: rgba(190, 106, 21, 0.2);
+            background-color: rgba(190, 106, 21, 0.15);
             border-left: 3px solid var(--leaking-color);
         }
         
         .status-box-missing {
-            background-color: rgba(158, 42, 43, 0.2);
+            background-color: rgba(158, 42, 43, 0.15);
             border-left: 3px solid var(--missing-color);
         }
         
         .status-box-uncharted {
-            background-color: rgba(94, 84, 142, 0.2);
+            background-color: rgba(94, 84, 142, 0.15);
             border-left: 3px solid var(--uncharted-color);
         }
         
         .status-count {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 12px 0;
         }
         
         .status-label {
@@ -373,27 +548,159 @@
         }
         
         .category-box {
-            padding: 12px;
-            border-radius: 5px;
+            padding: 16px;
+            border-radius: 10px;
             margin-bottom: 15px;
             background-color: var(--dark-2);
+            transition: transform 0.3s;
         }
         
-        @media (min-width: 768px) {
-            .btn-group {
-                width: 280px;
-                margin: 20px auto 0;
+        .category-box:hover {
+            transform: translateY(-3px);
+        }
+        
+        .question-counter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--dark-3);
+            padding-bottom: 15px;
+        }
+        
+        /* Button transitions */
+        .btn-primary {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            transition: all 0.4s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.1));
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .footer a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: #999;
+        }
+        
+        .intro-text {
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+        
+        .intro-text p {
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 580px) {
+            :root {
+                --card-width: 100%;
+                --card-height: 480px;
             }
+            
+            body {
+                padding: 12px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .btn-group {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .status-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .card-header .icon {
+                font-size: 28px;
+                margin-right: 12px;
+                margin-left: 8px;
+            }
+            
+            .card-header .title {
+                font-size: 20px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .card-question {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .card-importance {
+                font-size: 14px;
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .card-corner {
+                top: 15px;
+                right: 15px;
+                padding: 4px 8px;
+                gap: 4px;
+            }
+            
+            .card-suite, .card-number {
+                font-size: 18px;
+            }
+            
+            .form-group label {
+                font-size: 14px;
+            }
+            
+            .form-group input {
+                padding: 12px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
     </style>
 </head>
 <body>
-    <h1>The Digital Dam™ Watch Cards</h1>
+    <div class="subtitle">Play Your Security Cards Right</div>
+    <h1>ShieldScan™: The Small Business Protection Assessment</h1>
     
     <!-- Intro Screen -->
-    <div id="intro-screen" class="container">
-        <h2>Is Your Business Protected?</h2>
-        <p>Just as a beaver inspects its dam for weaknesses, this quick assessment will identify vulnerabilities in your digital protection. Review 10 security watch cards to see how well your business would withstand today's cyber threats.</p>
+    <div id="intro-screen" class="container fade-in">
+        <div class="intro-text">
+            <p>xFacilitator delivers affordable, enterprise-grade security protection for small businesses without the complexity, minimums, or long-term commitments.</p>
+            
+            <p>ShieldScan™ helps identify and address hidden vulnerabilities in your digital defenses before they become catastrophic breaches. Just as a beaver meticulously inspects every inch of its dam, our assessment methodically evaluates your security posture through our proprietary Watch Cards™ system. Don't let cyber threats erode what you've built—secure your business today and discover your Protection Score.</p>
+        </div>
         
         <h3>How to use:</h3>
         <p>For each security card, select one of the following options:</p>
@@ -416,7 +723,7 @@
             </div>
         </div>
         
-        <button id="start-btn" class="btn">Start Assessment</button>
+        <button id="start-btn" class="btn btn-primary" style="width: 100%; margin-top: 30px;">Start Assessment</button>
     </div>
     
     <!-- Assessment Screen -->
@@ -426,15 +733,17 @@
                 <div id="progress-bar" class="progress-bar"></div>
             </div>
             
-            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+            <div class="question-counter-container">
                 <div id="question-counter">Card 1 of 10</div>
                 <div id="score-display">Current Score: 0</div>
             </div>
             
             <div class="watch-card">
                 <div class="card-inner">
-                    <span id="card-suite" class="card-suite">♠</span>
-                    <span id="card-number" class="card-number">A</span>
+                    <div class="card-corner">
+                        <span id="card-suite" class="card-suite">♠</span>
+                        <span id="card-number" class="card-number">A</span>
+                    </div>
                     
                     <div class="card-header">
                         <span id="card-icon" class="icon">🎣</span>
@@ -453,10 +762,22 @@
             </div>
             
             <div class="btn-group">
-                <button class="btn btn-strong" data-action="strong">Strong</button>
-                <button class="btn btn-leaking" data-action="leaking">Leaking</button>
-                <button class="btn btn-missing" data-action="missing">Missing</button>
-                <button class="btn btn-uncharted" data-action="uncharted">Uncharted</button>
+                <button class="btn btn-strong" data-action="strong">
+                    <span>Strong</span>
+                    <span class="btn-subtext">We have this and it works well</span>
+                </button>
+                <button class="btn btn-leaking" data-action="leaking">
+                    <span>Leaking</span>
+                    <span class="btn-subtext">We have it but it's not effective</span>
+                </button>
+                <button class="btn btn-missing" data-action="missing">
+                    <span>Missing</span>
+                    <span class="btn-subtext">We don't have this protection</span>
+                </button>
+                <button class="btn btn-uncharted" data-action="uncharted">
+                    <span>Uncharted</span>
+                    <span class="btn-subtext">Not familiar with this concept</span>
+                </button>
             </div>
         </div>
     </div>
@@ -469,39 +790,39 @@
         <div id="contact-form">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" required placeholder="Your name">
             </div>
             
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" required placeholder="Your email address">
             </div>
             
             <div class="form-group">
                 <label for="company">Company</label>
-                <input type="text" id="company" required>
+                <input type="text" id="company" required placeholder="Your company name">
             </div>
             
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone">
+                <input type="tel" id="phone" placeholder="Your phone number (optional)">
             </div>
             
-            <button id="submit-contact" class="btn">Get My Results</button>
+            <button id="submit-contact" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Get My Results</button>
         </div>
     </div>
     
     <!-- Results Screen -->
     <div id="results-screen" class="hidden">
         <div class="container">
-            <h2>Your Digital Dam™ Results</h2>
+            <h2>Your Protection Score Results</h2>
             
             <div class="result-section">
-                <h3>Your Security Score: <span id="final-score">0</span>/30</h3>
+                <h3>Your Protection Score: <span id="final-score">0</span>/30</h3>
                 <div class="progress">
                     <div id="results-progress-bar" class="progress-bar"></div>
                 </div>
-                <div id="risk-level" style="text-align: center; margin-top: 15px; font-size: 18px; font-weight: bold;"></div>
+                <div id="risk-level" style="text-align: center; margin-top: 18px; font-size: 20px; font-weight: 600;"></div>
             </div>
             
             <div class="result-section">
@@ -537,12 +858,18 @@
                 </div>
             </div>
             
-            <div class="result-section result-card" style="background-color: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--accent-gold);">
+            <div class="result-section result-card" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(20, 20, 30, 0.8)); border-left: 3px solid var(--accent-gold);">
                 <h3 style="margin-top: 0; border-bottom: none; color: var(--accent-gold);">Next Steps</h3>
-                <p>Schedule your free 30-minute consultation to discuss how to strengthen your Digital Dam™ and protect your business from cyber threats.</p>
-                <button id="schedule-btn" class="btn" style="width: 100%; margin-top: 15px;">Schedule Consultation</button>
+                <p>Review your security assessment results above and see which areas need improvement.</p>
+                <p style="margin-top: 15px;">Click the button below to email your results to our team and schedule a free 30-minute discovery call.</p>
+                <button id="email-results-btn" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Email These Results</button>
+                <button id="schedule-btn" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Schedule Discovery</button>
             </div>
         </div>
+    </div>
+    
+    <div class="footer">
+        <a href="https://xfacilitator.ca" target="_blank">xFacilitator</a>
     </div>
     
     <script>
@@ -738,6 +1065,7 @@
             // Set up event listeners
             document.getElementById('start-btn').addEventListener('click', startAssessment);
             document.getElementById('submit-contact').addEventListener('click', handleContactSubmit);
+            document.getElementById('email-results-btn').addEventListener('click', emailResults);
             document.getElementById('schedule-btn').addEventListener('click', scheduleConsultation);
             
             // Set up action buttons
@@ -746,6 +1074,17 @@
                 button.addEventListener('click', function() {
                     const action = this.getAttribute('data-action');
                     handleCardAction(action);
+                });
+            });
+            
+            // Add hover effect to all buttons
+            const allButtons = document.querySelectorAll('.btn');
+            allButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
                 });
             });
         };
@@ -806,8 +1145,30 @@
             state.score += points[action];
             scoreDisplay.textContent = `Current Score: ${state.score}`;
             
-            // Load next card
-            loadCard(state.currentIndex + 1);
+            // Add a subtle animation to the card
+            const cardInner = document.querySelector('.card-inner');
+            cardInner.style.transform = 'translateX(100%)';
+            cardInner.style.opacity = '0';
+            
+            // Load next card after animation
+            setTimeout(() => {
+                loadCard(state.currentIndex + 1);
+                
+                // Reset animation
+                setTimeout(() => {
+                    cardInner.style.transition = 'none';
+                    cardInner.style.transform = 'translateX(-100%)';
+                    cardInner.style.opacity = '0';
+                    
+                    // Force a reflow
+                    cardInner.offsetHeight;
+                    
+                    // Re-enable transition and bring card back
+                    cardInner.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                    cardInner.style.transform = 'translateX(0)';
+                    cardInner.style.opacity = '1';
+                }, 50);
+            }, 400);
         }
 
         // Handle contact form submission
@@ -828,9 +1189,6 @@
                 return;
             }
             
-            // Submit to Airtable (would be implemented with actual API call)
-            submitToAirtable();
-            
             // Show results screen
             contactScreen.classList.add('hidden');
             resultsScreen.classList.remove('hidden');
@@ -839,40 +1197,95 @@
             displayResults();
         }
 
-        // Submit data to Airtable
-        function submitToAirtable() {
-            console.log('Submitting to Airtable:', {
-                user: state.user,
-                score: state.score,
-                results: state.results
-            });
+        // Email results function
+        function emailResults() {
+            console.log("Emailing assessment results");
             
-            // In production, this would be an actual API call to Airtable
-            // Example:
-            // fetch('https://api.airtable.com/v0/YOUR_BASE_ID/YOUR_TABLE_NAME', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Authorization': 'Bearer YOUR_API_KEY',
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         fields: {
-            //             Name: state.user.name,
-            //             Email: state.user.email,
-            //             Company: state.user.company,
-            //             Phone: state.user.phone,
-            //             Score: state.score,
-            //             Strong: state.results.strong.length,
-            //             Leaking: state.results.leaking.length,
-            //             Missing: state.results.missing.length,
-            //             Uncharted: state.results.uncharted.length,
-            //             Results: JSON.stringify(state.results)
-            //         }
-            //     })
-            // })
-            // .then(response => response.json())
-            // .then(data => console.log('Airtable Success:', data))
-            // .catch(error => console.error('Airtable Error:', error));
+            // Format the assessment data for email
+            const subject = encodeURIComponent(`ShieldScan Results - ${state.user.company}`);
+            
+            // Create a detailed body with all assessment information
+            let body = encodeURIComponent(`
+SHIELDSCAN™ ASSESSMENT RESULTS
+
+Client Information:
+------------------------
+Name: ${state.user.name}
+Email: ${state.user.email}
+Company: ${state.user.company}
+Phone: ${state.user.phone || "Not provided"}
+
+Protection Score Summary:
+------------------------
+Overall Score: ${state.score}/30
+Strong Areas: ${state.results.strong.length}
+Leaking Areas: ${state.results.leaking.length}
+Missing Protections: ${state.results.missing.length}
+Uncharted Areas: ${state.results.uncharted.length}
+
+Risk Level: ${getRiskLevelText(state.score)}
+
+Detailed Responses:
+------------------------
+`);
+
+            // Add detailed responses for each card
+            if (state.results.strong.length > 0) {
+                body += encodeURIComponent(`STRONG PROTECTIONS:\n`);
+                state.results.strong.forEach(index => {
+                    body += encodeURIComponent(`✓ ${watchCards[index].title}\n`);
+                });
+                body += encodeURIComponent(`\n`);
+            }
+            
+            if (state.results.leaking.length > 0) {
+                body += encodeURIComponent(`LEAKING PROTECTIONS:\n`);
+                state.results.leaking.forEach(index => {
+                    body += encodeURIComponent(`⚠️ ${watchCards[index].title}\n`);
+                });
+                body += encodeURIComponent(`\n`);
+            }
+            
+            if (state.results.missing.length > 0) {
+                body += encodeURIComponent(`MISSING PROTECTIONS:\n`);
+                state.results.missing.forEach(index => {
+                    body += encodeURIComponent(`❌ ${watchCards[index].title}\n`);
+                });
+                body += encodeURIComponent(`\n`);
+            }
+            
+            if (state.results.uncharted.length > 0) {
+                body += encodeURIComponent(`UNCHARTED AREAS:\n`);
+                state.results.uncharted.forEach(index => {
+                    body += encodeURIComponent(`❓ ${watchCards[index].title}\n`);
+                });
+                body += encodeURIComponent(`\n`);
+            }
+            
+            // Add timestamp and footer
+            body += encodeURIComponent(`
+Assessment completed: ${new Date().toLocaleString()}
+
+------------------------
+ShieldScan™ by xFacilitator | Solutions for your digital dam
+https://xfacilitator.ca
+`);
+            
+            // Open email client with pre-filled email
+            window.location.href = `mailto:solutions@xfacilitator.ca?subject=${subject}&body=${body}`;
+        }
+
+        // Helper function to get risk level text
+        function getRiskLevelText(score) {
+            if (score <= 5) {
+                return "SAFE - Your security posture is strong";
+            } else if (score <= 12) {
+                return "CAUTION - Your security needs improvement";
+            } else if (score <= 19) {
+                return "DANGER - Significant vulnerabilities exist";
+            } else {
+                return "CRITICAL - Your business is at extreme risk";
+            }
         }
 
         // Display results
@@ -907,59 +1320,150 @@
             riskLevel.style.color = riskColor;
             resultsProgressBar.style.width = progressPercent;
             
-            // Update counts
-            strongCount.textContent = state.results.strong.length;
-            leakingCount.textContent = state.results.leaking.length;
-            missingCount.textContent = state.results.missing.length;
-            unchartedCount.textContent = state.results.uncharted.length;
+            // Update counts with animation
+            animateCount('strong-count', state.results.strong.length);
+            animateCount('leaking-count', state.results.leaking.length);
+            animateCount('missing-count', state.results.missing.length);
+            animateCount('uncharted-count', state.results.uncharted.length);
             
             // Generate recommendations
             generateRecommendations();
+        }
+        
+        // Animate count up for a more engaging display
+        function animateCount(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            let currentValue = 0;
+            const duration = 1000; // ms
+            const interval = 50; // ms
+            const steps = duration / interval;
+            const increment = targetValue / steps;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                element.textContent = Math.floor(currentValue);
+                
+                if (currentValue >= targetValue) {
+                    element.textContent = targetValue;
+                    clearInterval(timer);
+                }
+            }, interval);
         }
 
         // Generate recommendations
         function generateRecommendations() {
             recommendationsContainer.innerHTML = '';
             
-            // Combine issues that need attention
-            const issues = [...state.results.missing, ...state.results.uncharted, ...state.results.leaking];
+            // Focus on Missing and Uncharted items first (highest risk), then Leaking
+            const priorityIssues = [...state.results.missing, ...state.results.uncharted, ...state.results.leaking];
             
-            // Create a map to track which guardians are needed
-            const neededGuardians = new Map();
-            
-            // Process each issue
-            issues.forEach(index => {
-                const card = watchCards[index];
-                const guardian = card.guardian;
-                
-                // Add to needed guardians if not already tracked
-                if (!neededGuardians.has(guardian)) {
-                    neededGuardians.set(guardian, [index]);
-                } else {
-                    neededGuardians.get(guardian).push(index);
-                }
-            });
-            
-            // Generate recommendation cards
-            if (neededGuardians.size === 0) {
+            if (priorityIssues.length === 0) {
+                // No issues found (all Strong)
                 const message = document.createElement('div');
                 message.className = 'result-card';
-                message.style.backgroundColor = 'rgba(44, 110, 73, 0.1)';
+                message.style.backgroundColor = 'rgba(44, 110, 73, 0.15)';
                 message.style.borderLeft = '3px solid var(--strong-color)';
                 message.innerHTML = `
                     <h4 style="color: var(--strong-color); margin-top: 0;">Excellent Protection!</h4>
-                    <p>Your security posture is strong across all areas. Schedule a consultation to discuss how to maintain your excellent security stance.</p>
+                    <p>Your security posture is strong across all areas. Schedule a discovery call to discuss how to maintain your excellent security stance.</p>
                 `;
                 recommendationsContainer.appendChild(message);
                 return;
             }
             
-            neededGuardians.forEach((issues, guardianKey) => {
-                const guardian = guardians[guardianKey];
+            // Add tip message for high priority items
+            if (state.results.missing.length > 0 || state.results.uncharted.length > 0) {
+                const tipMessage = document.createElement('div');
+                tipMessage.className = 'result-card';
+                tipMessage.style.background = 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(20, 20, 30, 0.8))';
+                tipMessage.style.borderLeft = '3px solid var(--accent-gold)';
+                tipMessage.innerHTML = `
+                    <h4 style="color: var(--accent-gold); margin-top: 0;">TIP</h4>
+                    <p>Start by fixing the cards in MISSING and UNCHARTED quadrants since they carry the most risk points!</p>
+                `;
+                recommendationsContainer.appendChild(tipMessage);
+            }
+            
+            // Direct 1:1 mapping of security issues to guardian solutions based on the mapping provided
+            const directMappings = {
+                "Email Security": {
+                    guardian: "mPhish",
+                    name: "Threat Trainer",
+                },
+                "Multi-Factor Authentication": {
+                    guardian: "mCloud",
+                    name: "Cloud Commander",
+                },
+                "Password Management": {
+                    guardian: "mPassword",
+                    name: "Password Protector",
+                },
+                "Data Backup & Recovery": {
+                    guardian: "mCyber",
+                    name: "Crisis Controller",
+                    alternates: ["mCloud", "mCompute"]
+                },
+                "Vulnerability Management": {
+                    guardian: "mCompute",
+                    name: "Hardware Hunter",
+                },
+                "Security Monitoring": {
+                    guardian: "mMonitor",
+                    name: "Night Watcher",
+                },
+                "Incident Response Plan": {
+                    guardian: "mCyber",
+                    name: "Crisis Controller",
+                },
+                "Security Awareness Training": {
+                    guardian: "mPhish",
+                    name: "Threat Trainer",
+                },
+                "PIPA Compliance": {
+                    guardian: "mCompliance",
+                    name: "Regulation Ranger",
+                },
+                "Endpoint Protection": {
+                    guardian: "mCyber",
+                    name: "Crisis Controller",
+                }
+            };
+            
+            // Process each issue and create recommendation cards
+            const processedCards = new Set(); // Track processed cards to avoid duplicates
+            
+            priorityIssues.forEach(index => {
+                const card = watchCards[index];
+                const cardTitle = card.title;
+                const mapping = directMappings[cardTitle];
+                
+                if (!mapping || processedCards.has(cardTitle)) {
+                    return; // Skip if no mapping or already processed
+                }
+                
+                processedCards.add(cardTitle);
+                const guardian = guardians[mapping.guardian];
+                
+                // Determine category of the issue
+                let categoryName, categoryColor, categoryBg;
+                if (state.results.missing.includes(index)) {
+                    categoryName = "MISSING";
+                    categoryColor = "var(--missing-color)";
+                    categoryBg = "rgba(158, 42, 43, 0.15)";
+                } else if (state.results.uncharted.includes(index)) {
+                    categoryName = "UNCHARTED";
+                    categoryColor = "var(--uncharted-color)";
+                    categoryBg = "rgba(94, 84, 142, 0.15)";
+                } else {
+                    categoryName = "LEAKING";
+                    categoryColor = "var(--leaking-color)";
+                    categoryBg = "rgba(190, 106, 21, 0.15)";
+                }
                 
                 // Create recommendation card
-                const card = document.createElement('div');
-                card.className = 'result-card';
+                const recommendationCard = document.createElement('div');
+                recommendationCard.className = 'result-card';
+                recommendationCard.style.animation = 'fadeIn 0.5s ease-in-out';
                 
                 // Guardian header
                 const guardianHeader = document.createElement('div');
@@ -972,43 +1476,61 @@
                     </div>
                 `;
                 
-                // Guardian description
-                const guardianDesc = document.createElement('p');
-                guardianDesc.textContent = guardian.description;
+                // Issue information
+                const issueInfo = document.createElement('div');
+                issueInfo.innerHTML = `
+                    <p style="margin-top: 10px; margin-bottom: 5px;">
+                        <span style="display: inline-block; background-color: ${categoryBg}; color: ${categoryColor}; padding: 4px 10px; border-radius: 20px; font-size: 13px; margin-right: 8px; border: 1px solid ${categoryColor};">${categoryName}</span>
+                        <strong>${cardTitle}</strong>
+                    </p>
+                    <p style="margin-top: 10px;">${guardian.description}</p>
+                `;
                 
-                // Issues this guardian addresses
-                const issuesTitle = document.createElement('p');
-                issuesTitle.textContent = "Addresses:";
-                issuesTitle.style.marginTop = "10px";
-                issuesTitle.style.marginBottom = "5px";
-                issuesTitle.style.fontWeight = "bold";
-                
-                // Create issues container
-                const issuesContainer = document.createElement('div');
-                issuesContainer.className = 'guardian-issues';
-                
-                // Add issue tags
-                issues.forEach(index => {
-                    const card = watchCards[index];
-                    const issueTag = document.createElement('span');
-                    issueTag.className = 'issue-tag';
-                    issueTag.textContent = card.title;
-                    issuesContainer.appendChild(issueTag);
-                });
+                // Add alternate guardians if applicable
+                if (mapping.alternates && mapping.alternates.length > 0) {
+                    const alternatesContainer = document.createElement('div');
+                    alternatesContainer.style.marginTop = "15px";
+                    alternatesContainer.style.fontSize = "14px";
+                    alternatesContainer.style.color = "var(--text-secondary)";
+                    alternatesContainer.style.padding = "12px";
+                    alternatesContainer.style.borderRadius = "8px";
+                    alternatesContainer.style.backgroundColor = "rgba(30, 30, 38, 0.4)";
+                    
+                    alternatesContainer.innerHTML = `
+                        <p><em>Alternative options:</em></p>
+                    `;
+                    
+                    const alternatesList = document.createElement('div');
+                    alternatesList.style.marginTop = "8px";
+                    
+                    mapping.alternates.forEach(altGuardianKey => {
+                        const altGuardian = guardians[altGuardianKey];
+                        const altItem = document.createElement('div');
+                        altItem.style.marginBottom = "8px";
+                        altItem.style.display = "flex";
+                        altItem.style.alignItems = "center";
+                        altItem.innerHTML = `
+                            <span style="display: inline-block; width: 30px; text-align: center; margin-right: 8px;">${altGuardian.icon}</span>
+                            <span><strong>${altGuardian.name}</strong> - ${altGuardian.price}</span>
+                        `;
+                        alternatesList.appendChild(altItem);
+                    });
+                    
+                    alternatesContainer.appendChild(alternatesList);
+                    issueInfo.appendChild(alternatesContainer);
+                }
                 
                 // Assemble card
-                card.appendChild(guardianHeader);
-                card.appendChild(guardianDesc);
-                card.appendChild(issuesTitle);
-                card.appendChild(issuesContainer);
-                recommendationsContainer.appendChild(card);
+                recommendationCard.appendChild(guardianHeader);
+                recommendationCard.appendChild(issueInfo);
+                recommendationsContainer.appendChild(recommendationCard);
             });
         }
 
         // Schedule consultation
         function scheduleConsultation(event) {
             event.preventDefault();
-            alert("In production, this would open your scheduling tool.");
+            window.open("https://cal.com/xfacilitator/illuminate?overlayCalendar=true", "_blank");
         }
     </script>
 </body>
