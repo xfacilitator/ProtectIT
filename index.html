@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGITAL DAM SCAN™ - The Small Business Protection Assessment</title>
-    <meta name="description" content="Discover your small business security with our simple assessment. Get your Protection Score and strengthen your cyber defenses.">
+    <meta name="description" content="Discover your small business security vulnerabilities with our simple assessment. Get your Protection Score and strengthen your cyber defenses.">
     <meta property="og:title" content="🦫 DIGITAL DAM SCAN™">
-    <meta property="og:description" content="Play your security cards right">
+    <meta property="og:description" content="The Small Business Protection Assessment - Play your security cards right">
     <meta property="og:site_name" content="Digital Dam Scan">
     <meta property="og:type" content="website">
     <meta name="application-name" content="Digital Dam Scan">
@@ -1211,7 +1211,7 @@
         };
 
         // Webhook configuration - Replace with your actual webhook URL
-        const WEBHOOK_URL = 'https://hooks.airtable.com/workflows/v1/genericWebhook/YOUR_WEBHOOK_ID_HERE';
+        const WEBHOOK_URL = 'https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflvm6oP56wKeDCml/wtrZRI4F1qbazhoc2';
 
         // Application state
         let state = {
@@ -1400,38 +1400,13 @@
 
         // Send card data to webhook
         async function sendCardData(cardData) {
-            if (WEBHOOK_URL === 'https://hooks.airtable.com/workflows/v1/genericWebhook/YOUR_WEBHOOK_ID_HERE') {
-                console.log("Webhook URL not configured - skipping data send");
-                return;
-            }
-            
-            try {
-                const payload = {
-                    type: 'card_response',
-                    corporateEmail: state.user.corporateEmail,
-                    cardData: cardData,
-                    currentScore: state.score,
-                    timestamp: new Date().toISOString()
-                };
-                
-                await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                console.log("Card data sent successfully");
-            } catch (error) {
-                console.error("Failed to send card data:", error);
-                // Continue silently - don't interrupt user experience
-            }
+            // Skip individual card data sends - we'll send everything at the end
+            console.log(`📝 Card ${cardData.cardIndex + 1} answered: ${cardData.action}`);
         }
 
         // Handle contact form submission
         function handleContactSubmit(event) {
-            console.log("Contact form submitted");
+            console.log("📋 Contact form submitted");
             
             // Get form data
             const formData = {
@@ -1441,15 +1416,24 @@
                 phone: document.getElementById('phone').value.trim()
             };
             
-            // Validate form
+            // Validate required fields
             if (!formData.name || !formData.company || !formData.users) {
-                alert("Please fill in all required fields");
+                alert("Please fill in all required fields (Name, Company, and Team Size)");
+                return;
+            }
+            
+            // Validate team size is a positive number
+            if (isNaN(formData.users) || parseInt(formData.users) < 1) {
+                alert("Please enter a valid team size (minimum 1)");
                 return;
             }
             
             // Update state
             state.user = { ...state.user, ...formData };
             state.completed = true;
+            
+            console.log("👤 Final user data:", state.user);
+            console.log("📊 Final assessment results:", state.results);
             
             // Send final data to webhook
             sendFinalData();
@@ -1658,48 +1642,84 @@
 
         // Pre-fill company name when contact screen is shown
         async function prefillCompanyName() {
-            if (state.user.corporateEmail) {
-                const companyField = document.getElementById('company');
-                if (companyField && !companyField.value) {
-                    // Show loading state
-                    companyField.placeholder = 'Loading...';
-                    companyField.disabled = true;
-                    
-                    try {
-                        const companyName = await getCompanyFromDomain(state.user.corporateEmail);
-                        if (companyName) {
-                            companyField.value = companyName;
-                            companyField.placeholder = 'Your company name';
-                        } else {
-                            companyField.placeholder = 'Your company name';
-                        }
-                    } catch (error) {
-                        console.error('Failed to prefill company name:', error);
-                        companyField.placeholder = 'Your company name';
-                    } finally {
-                        companyField.disabled = false;
-                    }
+            if (!state.user.corporateEmail) {
+                console.log("❌ No corporate email found for company prefill");
+                return;
+            }
+            
+            const companyField = document.getElementById('company');
+            if (!companyField) {
+                console.log("❌ Company field not found");
+                return;
+            }
+            
+            if (companyField.value.trim()) {
+                console.log("ℹ️ Company field already has value, skipping prefill");
+                return;
+            }
+            
+            // Show loading state
+            companyField.placeholder = 'Loading company name...';
+            companyField.disabled = true;
+            
+            try {
+                console.log("🏢 Starting company name prefill...");
+                const companyName = await getCompanyFromDomain(state.user.corporateEmail);
+                if (companyName && companyName.length > 0) {
+                    companyField.value = companyName;
+                    companyField.placeholder = 'Your company name';
+                    console.log(`✅ Company name prefilled: "${companyName}"`);
+                } else {
+                    companyField.placeholder = 'Your company name';
+                    console.log("ℹ️ No company name found, using default placeholder");
                 }
+            } catch (error) {
+                console.error('💥 Failed to prefill company name:', error);
+                companyField.placeholder = 'Your company name';
+            } finally {
+                companyField.disabled = false;
             }
         }
 
         // Send final assessment data
         async function sendFinalData() {
-            if (WEBHOOK_URL === 'https://hooks.airtable.com/workflows/v1/genericWebhook/YOUR_WEBHOOK_ID_HERE') {
-                console.log("Webhook URL not configured - skipping final data send");
-                return;
-            }
-            
             try {
+                // Create flattened individual card responses
+                const cardResponses = {};
+                watchCards.forEach((card, index) => {
+                    // Find this card's response in assessmentData
+                    const response = state.assessmentData.find(item => item.cardIndex === index);
+                    const fieldName = `Card ${index + 1} - ${card.title}`;
+                    cardResponses[fieldName] = response ? response.action : 'not_answered';
+                });
+                
                 const payload = {
                     type: 'assessment_complete',
-                    user: state.user,
-                    finalScore: state.score,
-                    results: state.results,
-                    assessmentData: state.assessmentData,
+                    // Contact Information
+                    email: state.user.corporateEmail,
+                    name: state.user.name,
+                    company: state.user.company,
+                    teamSize: parseInt(state.user.users) || 0,
+                    phone: state.user.phone || '',
+                    
+                    // Assessment Summary
+                    riskScore: state.score,
                     riskLevel: getRiskLevelText(state.score),
-                    completedAt: new Date().toISOString()
+                    strongCount: state.results.strong.length,
+                    leakingCount: state.results.leaking.length,
+                    missingCount: state.results.missing.length,
+                    unchartedCount: state.results.uncharted.length,
+                    completedAt: new Date().toISOString(),
+                    
+                    // Individual Card Responses (flattened)
+                    ...cardResponses,
+                    
+                    // Raw data backup (optional)
+                    rawAssessmentData: JSON.stringify(state.assessmentData),
+                    rawResults: JSON.stringify(state.results)
                 };
+                
+                console.log("📤 Sending final assessment data to Airtable:", payload);
                 
                 await fetch(WEBHOOK_URL, {
                     method: 'POST',
@@ -1709,10 +1729,11 @@
                     body: JSON.stringify(payload)
                 });
                 
-                console.log("Final assessment data sent successfully");
+                console.log("✅ Assessment data successfully sent to Airtable");
             } catch (error) {
-                console.error("Failed to send final data:", error);
-                // Continue silently
+                console.error("❌ Failed to send assessment data to Airtable:", error);
+                // Continue silently - don't interrupt user experience
+                // Could add user notification here if needed
             }
         }
 
