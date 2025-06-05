@@ -1585,8 +1585,8 @@
         // ===========================================
         
         // Webhook URLs for Airtable integration with CORS proxy
-        const WEBHOOK_EMAIL_CAPTURE = 'https://cors-anywhere.herokuapp.com/https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflvm6oP56wKeDCml/wtrZRI4F1qbazhoc2';
-        const WEBHOOK_ASSESSMENT_UPDATE = 'https://cors-anywhere.herokuapp.com/https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflqlj5P0XBlWVGCp/wtrUQVLFWhgLhzss6';
+        const WEBHOOK_EMAIL_CAPTURE = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflvm6oP56wKeDCml/wtrZRI4F1qbazhoc2');
+        const WEBHOOK_ASSESSMENT_UPDATE = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflqlj5P0XBlWVGCp/wtrUQVLFWhgLhzss6');
         
         // Security constants (OBSERVATION: Good security practices with rate limiting)
         const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
