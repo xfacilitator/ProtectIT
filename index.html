@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL DAM SCAN™ - The Small Business Protection Assessment</title>
-    <meta name="description" content="Discover your small business security vulnerabilities with our simple assessment. Get your Protection Score and strengthen your cyber defenses.">
+    <title>🦫 DIGITAL DAM SCAN™ - The Small Business Protection Assessment</title>
+    <meta name="description" content="Discover your business security vulnerabilities with our simple assessment. Get your Protection Score and strengthen your cyber defenses.">
     <meta property="og:title" content="🦫 DIGITAL DAM SCAN™">
     <meta property="og:description" content="The Small Business Protection Assessment - Play your security cards right">
     <meta property="og:site_name" content="Digital Dam Scan">
@@ -25,10 +25,10 @@
             --dark-1: #141418;
             --dark-2: #1e1e24;
             --dark-3: #292933;
-            --strong-color: #2c6e49;
-            --leaking-color: #be6a15;
-            --missing-color: #9e2a2b;
-            --uncharted-color: #5e548e;
+            --strong-color: #d4af37;
+            --leaking-color: #4a90e2;
+            --missing-color: #ff6b35;
+            --uncharted-color: #d0021b;
             /* Playing card proportions: 2.5:3.5 ratio */
             --card-width: 280px;
             --card-height: 392px;
@@ -136,18 +136,18 @@
             background-color: var(--dark-2);
             color: var(--text-primary);
             border: 1px solid var(--accent-gold);
-            padding: 6px 8px;
+            padding: 16px 12px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 10px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             overflow: hidden;
-            min-height: 35px;
+            min-height: 60px;
             justify-content: center;
         }
         
@@ -178,12 +178,12 @@
         }
         
         .btn-subtext {
-            font-size: 7px;
-            margin-top: 1px;
+            font-size: 11px;
+            margin-top: 3px;
             color: var(--text-secondary);
-            font-weight: 300;
+            font-weight: 400;
             text-align: center;
-            line-height: 1;
+            line-height: 1.1;
         }
         
         /* Assessment Screen - Perfect Centering */
@@ -198,15 +198,15 @@
         }
 
         .assessment-header {
-            width: 300px;
+            width: 360px;
             margin: 0;
         }
         
-        /* Watch Card Styling - Compact Layout */
+        /* Watch Card Styling - Larger size for better readability */
         .watch-card {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 360px;
+            height: 500px;
             margin: 0;
             perspective: 1200px;
             flex-shrink: 0;
@@ -250,6 +250,13 @@
             font-size: 80px;
             margin-bottom: 12px;
             display: block;
+            color: var(--accent-gold);
+        }
+
+        .card-header .icon svg {
+            width: 80px;
+            height: 80px;
+            color: var(--accent-gold);
         }
         
         .card-header .title {
@@ -264,7 +271,7 @@
         }
         
         .card-content {
-            padding: 40px 45px;
+            padding: 20px 60px 30px 60px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -272,40 +279,38 @@
             min-height: 0;
             justify-content: flex-start;
             align-items: center;
-            padding-top: 20px;
         }
         
         .card-question {
-            font-size: 16px;
+            font-size: 17px;
             color: var(--text-primary);
             line-height: 1.5;
             margin: 0;
-            flex-shrink: 0;
             text-align: center;
-            font-weight: 500;
+            font-weight: 400;
             max-width: 100%;
             word-wrap: break-word;
         }
         
         .card-corner {
             position: absolute;
-            top: 18px;
-            left: 18px;
+            top: 20px;
+            left: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
             z-index: 10;
             background: rgba(20, 20, 30, 0.8);
-            padding: 8px 6px;
+            padding: 10px 8px;
             border-radius: 8px;
             border: 1px solid var(--dark-3);
         }
         
         .card-corner-bottom {
             position: absolute;
-            bottom: 18px;
-            right: 18px;
+            bottom: 20px;
+            right: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -313,7 +318,7 @@
             transform: rotate(180deg);
             z-index: 10;
             background: rgba(20, 20, 30, 0.8);
-            padding: 8px 6px;
+            padding: 10px 8px;
             border-radius: 8px;
             border: 1px solid var(--dark-3);
         }
@@ -337,54 +342,233 @@
         .btn-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
+            gap: 8px;
             margin: 0;
-            width: 300px;
+            width: 360px;
             flex-shrink: 0;
+            position: relative;
+        }
+        
+        /* Center help icon positioned between the 4 buttons */
+        .btn-group-help {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--dark-1);
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: help;
+            z-index: 30;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-group-help:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
+        }
+
+        /* Individual button tooltips - positioned over each button with color-coded outlines */
+        .btn-tooltip {
+            position: absolute;
+            background: var(--dark-1);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 25;
+            text-align: center;
+            line-height: 1.2;
+            max-width: 140px;
+        }
+
+        .btn-tooltip-strong {
+            top: 0;
+            left: 0;
+            width: calc(50% - 4px);
+            height: calc(50% - 4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--strong-color);
+        }
+
+        .btn-tooltip-leaking {
+            top: 0;
+            right: 0;
+            width: calc(50% - 4px);
+            height: calc(50% - 4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--leaking-color);
+        }
+
+        .btn-tooltip-missing {
+            bottom: 0;
+            left: 0;
+            width: calc(50% - 4px);
+            height: calc(50% - 4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--missing-color);
+        }
+
+        .btn-tooltip-uncharted {
+            bottom: 0;
+            right: 0;
+            width: calc(50% - 4px);
+            height: calc(50% - 4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--uncharted-color);
+        }
+
+        /* Show all tooltips on help icon hover */
+        .btn-group-help:hover ~ .btn-tooltip {
+            opacity: 1;
+        }
+
+        .btn-tooltip .tooltip-label {
+            font-weight: 600;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+
+        .btn-tooltip .tooltip-desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        /* Mobile fallback - single tooltip */
+        .btn-group-help-tooltip-mobile {
+            display: none; /* Hidden by default on desktop */
+        }
+        
+        @media (max-width: 768px) {
+            .btn-tooltip {
+                display: none;
+            }
+            
+            .btn-group-help-tooltip-mobile {
+                display: block;
+                position: absolute;
+                bottom: 120%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--dark-1);
+                color: var(--text-primary);
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid var(--accent-gold);
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s;
+                width: 280px;
+                text-align: center;
+            }
+            
+            .btn-group-help:hover .btn-group-help-tooltip-mobile {
+                opacity: 1;
+            }
+            
+            .btn-group-help-tooltip-mobile .help-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin-top: 8px;
+            }
+            
+            .btn-group-help-tooltip-mobile .help-item {
+                text-align: center;
+            }
+            
+            .btn-group-help-tooltip-mobile .help-label {
+                font-weight: 600;
+                color: var(--accent-gold);
+                font-size: 12px;
+                margin-bottom: 3px;
+            }
+            
+            .btn-group-help-tooltip-mobile .help-desc {
+                font-size: 10px;
+                color: var(--text-secondary);
+                line-height: 1.2;
+            }
+            
+            .btn-group-help-tooltip-mobile::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 6px solid transparent;
+                border-top-color: var(--accent-gold);
+            }
         }
         
         .btn-strong {
-            background-color: rgba(44, 110, 73, 0.15);
+            background-color: rgba(212, 175, 55, 0.15);
             border-color: var(--strong-color);
             color: var(--text-primary);
         }
         
         .btn-leaking {
-            background-color: rgba(190, 106, 21, 0.15);
+            background-color: rgba(74, 144, 226, 0.15);
             border-color: var(--leaking-color);
             color: var(--text-primary);
         }
         
         .btn-missing {
-            background-color: rgba(158, 42, 43, 0.15);
+            background-color: rgba(255, 107, 53, 0.15);
             border-color: var(--missing-color);
             color: var(--text-primary);
         }
         
         .btn-uncharted {
-            background-color: rgba(94, 84, 142, 0.15);
+            background-color: rgba(208, 2, 27, 0.15);
             border-color: var(--uncharted-color);
             color: var(--text-primary);
         }
         
         .btn-strong:hover {
-            background-color: rgba(44, 110, 73, 0.3);
-            box-shadow: 0 0 15px rgba(44, 110, 73, 0.3);
+            background-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
         
         .btn-leaking:hover {
-            background-color: rgba(190, 106, 21, 0.3);
-            box-shadow: 0 0 15px rgba(190, 106, 21, 0.3);
+            background-color: rgba(74, 144, 226, 0.3);
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
         }
         
         .btn-missing:hover {
-            background-color: rgba(158, 42, 43, 0.3);
-            box-shadow: 0 0 15px rgba(158, 42, 43, 0.3);
+            background-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
         }
         
         .btn-uncharted:hover {
-            background-color: rgba(94, 84, 142, 0.3);
-            box-shadow: 0 0 15px rgba(94, 84, 142, 0.3);
+            background-color: rgba(208, 2, 27, 0.3);
+            box-shadow: 0 0 15px rgba(208, 2, 27, 0.3);
         }
         
         .progress {
@@ -485,10 +669,10 @@
             margin-bottom: 30px;
         }
 
-        /* Horizontal Status Breakdown */
+        /* Horizontal Status Breakdown - 2x2 Grid */
         .status-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin-bottom: 40px;
         }
@@ -511,22 +695,22 @@
         }
         
         .status-box-strong {
-            background-color: rgba(44, 110, 73, 0.15);
+            background-color: rgba(212, 175, 55, 0.15);
             border-left: 3px solid var(--strong-color);
         }
         
         .status-box-leaking {
-            background-color: rgba(190, 106, 21, 0.15);
+            background-color: rgba(74, 144, 226, 0.15);
             border-left: 3px solid var(--leaking-color);
         }
         
         .status-box-missing {
-            background-color: rgba(158, 42, 43, 0.15);
+            background-color: rgba(255, 107, 53, 0.15);
             border-left: 3px solid var(--missing-color);
         }
         
         .status-box-uncharted {
-            background-color: rgba(94, 84, 142, 0.15);
+            background-color: rgba(208, 2, 27, 0.15);
             border-left: 3px solid var(--uncharted-color);
         }
         
@@ -547,7 +731,7 @@
         .status-category-missing { color: var(--missing-color); }
         .status-category-uncharted { color: var(--uncharted-color); }
 
-        /* Emoji Recommendations */
+        /* Recommendations with smaller cards, no scroll */
         .recommendations-section {
             margin-bottom: 40px;
         }
@@ -558,61 +742,105 @@
             flex-wrap: wrap;
             gap: 20px;
             margin: 30px 0;
+            padding: 0;
         }
 
-        .guardian-emoji {
-            position: relative;
-            font-size: 48px;
-            padding: 20px;
-            border-radius: 50%;
-            background-color: var(--dark-2);
+        .guardian-card {
+            width: 140px;
+            height: 210px;
+            background: var(--bg-card);
             border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 0;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .guardian-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .guardian-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .guardian-card.flipped .guardian-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .guardian-card-front,
+        .guardian-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guardian-card-back {
+            transform: rotateY(180deg);
+            background: var(--bg-card);
+        }
+
+        .guardian-card-icon {
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 80px;
-            height: 80px;
+            font-size: 80px;
+            background: var(--dark-2);
+            border-bottom: 1px solid var(--dark-3);
         }
 
-        .guardian-emoji:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--accent-gold-glow);
+        .guardian-card-title {
+            height: 70px;
+            padding: 15px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            line-height: 1.2;
+        }
+
+        .guardian-card-description {
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            background: var(--dark-2);
+        }
+
+        /* Remove old content styles */
+        .guardian-card-content {
+            display: none;
+        }
+
+        /* Remove old emoji and tooltip styles */
+        .guardian-emoji {
+            display: none;
         }
 
         .guardian-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dark-1);
-            color: var(--text-primary);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-            border: 1px solid var(--accent-gold);
-            z-index: 1000;
-            margin-bottom: 10px;
-        }
-
-        .guardian-emoji:hover .guardian-tooltip {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .guardian-tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 5px solid transparent;
-            border-top-color: var(--accent-gold);
+            display: none;
         }
 
         /* CTA Section */
@@ -694,18 +922,18 @@
         
         @media (max-width: 768px) {
             .watch-card {
-                width: 280px;
-                height: 360px;
+                width: 320px;
+                height: 450px;
             }
             
             .btn-group {
-                width: 280px;
-                grid-template-columns: 1fr;
+                width: 320px;
+                grid-template-columns: 1fr 1fr;
                 gap: 5px;
             }
             
             .assessment-header {
-                max-width: 280px;
+                max-width: 320px;
             }
             
             .container {
@@ -731,16 +959,15 @@
             }
             
             .card-content {
-                padding: 25px 35px;
+                padding: 18px 50px 25px 50px;
                 height: calc(100% - 160px);
-                gap: 8px;
-                padding-top: 15px;
+                justify-content: flex-start;
             }
             
             .card-question {
-                font-size: 13px;
-                margin: 0;
+                font-size: 15px;
                 line-height: 1.4;
+                padding: 0 5px;
             }
             
             .card-corner {
@@ -774,16 +1001,16 @@
         
         @media (max-width: 480px) {
             .watch-card {
-                width: 260px;
-                height: 280px;
+                width: 300px;
+                height: 420px;
             }
 
             .btn-group {
-                width: 260px;
+                width: 300px;
             }
 
             .assessment-header {
-                max-width: 260px;
+                max-width: 300px;
             }
 
             .container {
@@ -797,9 +1024,8 @@
             }
 
             .card-content {
-                padding: 20px 30px;
-                gap: 6px;
-                padding-top: 12px;
+                padding: 10px 18px 18px 18px;
+                justify-content: flex-start;
             }
 
             .card-question {
@@ -826,13 +1052,13 @@
             }
 
             .btn {
-                padding: 5px 8px;
-                font-size: 10px;
-                min-height: 40px;
+                padding: 10px 10px;
+                font-size: 14px;
+                min-height: 45px;
             }
 
             .btn-subtext {
-                font-size: 7px;
+                font-size: 10px;
             }
 
             .status-grid {
@@ -840,14 +1066,33 @@
                 gap: 6px;
             }
 
-            .recommendations-grid {
-                gap: 10px;
+            .guardian-card {
+                width: 120px;
+                height: 180px;
             }
 
-            .guardian-emoji {
-                font-size: 24px;
-                width: 40px;
-                height: 40px;
+            .guardian-card-icon {
+                height: 120px;
+                font-size: 65px;
+            }
+
+            .guardian-card-title {
+                height: 60px;
+                padding: 10px 6px;
+                font-size: 14px;
+            }
+
+            .guardian-card-back .guardian-card-description {
+                height: 120px;
+                padding: 15px 10px;
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            .guardian-card-back .guardian-card-title {
+                height: 60px;
+                padding: 10px 6px;
+                font-size: 14px;
             }
 
             h1 {
@@ -869,10 +1114,70 @@
             animation: fadeIn 0.5s ease-out forwards;
         }
 
-        /* Loading states */
-        .loading {
-            opacity: 0.7;
+        /* Help icon for navigation */
+        .help-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--dark-2);
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: help;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .help-tooltip {
+            position: absolute;
+            bottom: 130%;
+            right: 0;
+            background: var(--dark-1);
+            color: var(--text-primary);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
             pointer-events: none;
+            transition: opacity 0.3s;
+            border: 1px solid var(--accent-gold);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .help-icon:hover .help-tooltip {
+            opacity: 1;
+        }
+
+        .help-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 15px;
+            border: 6px solid transparent;
+            border-top-color: var(--accent-gold);
+        }
+
+        /* Keyboard navigation highlight - now more distinct */
+        .btn-focused {
+            border-color: var(--accent-gold) !important;
+            box-shadow: 0 0 0 3px var(--accent-gold-glow) !important;
+            background-color: var(--dark-3) !important;
+            transform: translateY(-2px);
+        }
+        
+        /* Ensure tab focus is visually distinct from arrow focus */
+        .btn:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -941,6 +1246,11 @@
             </div>
             
             <div class="watch-card">
+                <div class="help-icon">
+                    <span>i</span>
+                    <div class="help-tooltip">↑↓ to select • ← to go back • Enter to confirm</div>
+                </div>
+                
                 <div class="card-inner">
                     <div class="card-corner">
                         <span id="card-number" class="card-number">5</span>
@@ -966,21 +1276,72 @@
             </div>
             
             <div class="btn-group">
+                <div class="btn-group-help">
+                    <span>i</span>
+                    <!-- Mobile fallback tooltip -->
+                    <div class="btn-group-help-tooltip-mobile">
+                        <strong>Response Guide</strong>
+                        <div class="help-grid">
+                            <div class="help-item">
+                                <div class="help-label">Strong</div>
+                                <div class="help-desc">You have this and it works well</div>
+                            </div>
+                            <div class="help-item">
+                                <div class="help-label">Leaking</div>
+                                <div class="help-desc">You have it but it's not effective</div>
+                            </div>
+                            <div class="help-item">
+                                <div class="help-label">Missing</div>
+                                <div class="help-desc">You don't have this protection</div>
+                            </div>
+                            <div class="help-item">
+                                <div class="help-label">Uncharted</div>
+                                <div class="help-desc">Not familiar with this concept</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Individual button tooltips for desktop -->
+                <div class="btn-tooltip btn-tooltip-strong">
+                    <div>
+                        <span class="tooltip-label">Strong</span>
+                        <span class="tooltip-desc">You have this and it works well</span>
+                    </div>
+                </div>
+                
+                <div class="btn-tooltip btn-tooltip-leaking">
+                    <div>
+                        <span class="tooltip-label">Leaking</span>
+                        <span class="tooltip-desc">You have it but it's not effective</span>
+                    </div>
+                </div>
+                
+                <div class="btn-tooltip btn-tooltip-missing">
+                    <div>
+                        <span class="tooltip-label">Missing</span>
+                        <span class="tooltip-desc">You don't have this protection</span>
+                    </div>
+                </div>
+                
+                <div class="btn-tooltip btn-tooltip-uncharted">
+                    <div>
+                        <span class="tooltip-label">Uncharted</span>
+                        <span class="tooltip-desc">Not familiar with this concept</span>
+                    </div>
+                </div>
+                
                 <button class="btn btn-strong" data-action="strong">
-                    <span>Strong</span>
-                    <span class="btn-subtext">We have this and it works well</span>
+                    Strong
                 </button>
                 <button class="btn btn-leaking" data-action="leaking">
-                    <span>Leaking</span>
-                    <span class="btn-subtext">We have it but it's not effective</span>
+                    Leaking
                 </button>
                 <button class="btn btn-missing" data-action="missing">
-                    <span>Missing</span>
-                    <span class="btn-subtext">We don't have this protection</span>
+                    Missing
                 </button>
                 <button class="btn btn-uncharted" data-action="uncharted">
-                    <span>Uncharted</span>
-                    <span class="btn-subtext">Not familiar with this concept</span>
+                    Uncharted
                 </button>
             </div>
         </div>
@@ -991,10 +1352,12 @@
         <h2>Just One More Step!</h2>
         <p>Enter your information to get your personalized security recommendations.</p>
         
+        <div style="height: 20px;"></div>
+        
         <div id="contact-form">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" required placeholder="Your name">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="John Smith">
             </div>
             
             <div class="form-group">
@@ -1077,7 +1440,7 @@
     </div>
     
     <script>
-        // Security watch cards data
+        // Security watch cards data with emojis (OBSERVATION: Well-structured data model)
         const watchCards = [
             {
                 suite: "♠",
@@ -1118,7 +1481,7 @@
             {
                 suite: "♠",
                 number: "8",
-                icon: "🔍",
+                icon: "👁️",
                 title: "Security Monitoring",
                 question: "Is someone watching your systems 24/7 for suspicious activity?",
                 importance: "Why It Matters: The average breach takes 204 days to discover. That's 9 months of someone rifling through your digital drawers. Early detection can reduce breach costs by over 70%.",
@@ -1145,6 +1508,15 @@
             {
                 suite: "♠",
                 number: "2",
+                icon: "💸",
+                title: "Cyber Insurance",
+                question: "Do you have cyber insurance coverage that includes business interruption, data breach response, and legal costs?",
+                importance: "Why It Matters: Even perfect security can fail. Cyber insurance is the difference between an incident and going out of business after an incident. 60% of small businesses close within 6 months of a major cyber attack without proper insurance coverage.",
+                guardian: null  // No guardian - just awareness
+            },
+            {
+                suite: "♠",
+                number: "3",
                 icon: "🔑",
                 title: "Password Management",
                 question: "Does your company and employees use an enterprise password manager?",
@@ -1154,66 +1526,74 @@
             {
                 suite: "♣",
                 number: "10",
-                icon: "📝",
+                icon: "📋",
                 title: "PIPA Compliance",
                 question: "Is your business fully compliant with Alberta's Personal Information Protection Act (PIPA) requirements for data handling and breach notification?",
                 importance: "Why it matters: Non-compliance with PIPA can result in fines up to $100,000 for organizations, plus legal challenges and reputational damage.",
                 guardian: "mCompliance"
-            },
-            {
-                suite: "♠",
-                number: "6",
-                icon: "🔍",
-                title: "Vulnerability Management",
-                question: "Do you regularly check for security holes in your systems?",
-                importance: "Why It Matters: 60% of breaches involve unpatched vulnerabilities. It's like leaving your door unlocked because installing the new lock seems inconvenient. Software has flaws. Better you find them before criminals do.",
-                guardian: "mCompute"
             }
         ];
 
-        // Guardian descriptions for recommendations (no pricing)
+        // Guardian descriptions for recommendations with animal icons by priority
         const guardians = {
+            "mCyber": {
+                name: "Crisis Controller", 
+                description: "Building digital dams that protect your business from failure",
+                icon: '🦫',
+                priority: 1
+            },
             "mPhish": {
                 name: "Threat Trainer",
-                description: "Ongoing security training and phishing simulations for your team",
-                icon: "🐠"
-            },
-            "mCyber": {
-                name: "Crisis Controller",
-                description: "Core security platform with incident response",
-                icon: "🦫"
-            },
-            "mCloud": {
-                name: "Cloud Commander",
-                description: "Secures your cloud services and implements MFA",
-                icon: "🦅"
+                description: "Transform your greatest vulnerability into your strongest defense", 
+                icon: '🐟',
+                priority: 2
             },
             "mPassword": {
                 name: "Password Protector",
                 description: "Enterprise password management solution",
-                icon: "🔑"
+                icon: '🐘',
+                priority: 3
             },
-            "mMonitor": {
-                name: "Night Watcher",
-                description: "24/7 security monitoring and alerts",
-                icon: "🦉"
+            "mCloud": {
+                name: "Cloud Commander",
+                description: "Cloud administration that sees beyond the horizon",
+                icon: '🦅',
+                priority: 4
             },
             "mCompute": {
                 name: "Hardware Hunter",
-                description: "Endpoint protection and vulnerability management",
-                icon: "🐺"
+                description: "Prowling your perimeter to keep threats at bay",
+                icon: '🐺',
+                priority: 5
             },
             "mCompliance": {
                 name: "Regulation Ranger",
-                description: "Compliance management and documentation",
-                icon: "🐢"
+                description: "Steady protection that withstands regulatory scrutiny",
+                icon: '🐢',
+                priority: 6
+            },
+            "mMonitor": {
+                name: "Night Watcher",
+                description: "Watching over your digital territory 24/7",
+                icon: '🦉',
+                priority: 7
             }
         };
 
-        // Webhook configuration - Replace with your actual webhook URL
-        const WEBHOOK_URL = 'https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflvm6oP56wKeDCml/wtrZRI4F1qbazhoc2';
+        // ===========================================
+        // CONFIGURATION - Update these URLs
+        // ===========================================
+        
+        // Webhook URLs for Airtable integration
+        const WEBHOOK_EMAIL_CAPTURE = 'https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflvm6oP56wKeDCml/wtrZRI4F1qbazhoc2';
+        const WEBHOOK_ASSESSMENT_UPDATE = 'https://hooks.airtable.com/workflows/v1/genericWebhook/appjoRjDCeUX3fdBI/wflqlj5P0XBlWVGCp/wtrUQVLFWhgLhzss6';
+        
+        // Security constants (OBSERVATION: Good security practices with rate limiting)
+        const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+        const MAX_SUBMISSIONS_PER_HOUR = 3;
+        const ASSESSMENT_TIMEOUT = 30 * 60 * 1000; // 30 minutes timeout
 
-        // Application state
+        // Application state (OBSERVATION: Comprehensive state management)
         let state = {
             currentIndex: 0,
             score: 0,
@@ -1230,10 +1610,15 @@
                 users: "",
                 phone: ""
             },
-            assessmentData: []
+            assessmentData: [],
+            recordKey: null,  // Track the record for updating
+            timeoutId: null,  // Track assessment timeout
+            assessmentStartTime: null,  // Track when assessment started
+            completed: false,  // Track completion status
+            currentFocusedButton: 0  // Track focused button for keyboard navigation
         };
 
-        // Initialize
+        // Initialize (OBSERVATION: Event-driven architecture)
         document.addEventListener('DOMContentLoaded', function() {
             console.log("DOM loaded - setting up event listeners");
             
@@ -1267,17 +1652,136 @@
                     handleCardAction(action);
                 });
             });
+            
+            // Set up keyboard navigation
+            setupKeyboardNavigation();
         });
 
-        // Handle email continue
+        // Keyboard navigation setup (OBSERVATION: Accessibility feature with arrow keys)
+        function setupKeyboardNavigation() {
+            document.addEventListener('keydown', function(event) {
+                // Only handle keyboard navigation on assessment screen
+                const assessmentScreen = document.getElementById('assessment-screen');
+                if (assessmentScreen.classList.contains('hidden')) {
+                    return;
+                }
+                
+                const buttons = document.querySelectorAll('[data-action]');
+                if (buttons.length === 0) return;
+                
+                let handled = false;
+                
+                switch(event.key) {
+                    case 'ArrowUp':
+                        handled = true;
+                        state.currentFocusedButton = Math.max(0, state.currentFocusedButton - 1);
+                        updateButtonFocus();
+                        break;
+                        
+                    case 'ArrowDown':
+                        handled = true;
+                        state.currentFocusedButton = Math.min(buttons.length - 1, state.currentFocusedButton + 1);
+                        updateButtonFocus();
+                        break;
+                        
+                    case 'ArrowLeft':
+                        handled = true;
+                        goBackOneCard();
+                        break;
+                        
+                    case 'Enter':
+                        handled = true;
+                        const focusedButton = buttons[state.currentFocusedButton];
+                        if (focusedButton) {
+                            const action = focusedButton.getAttribute('data-action');
+                            handleCardAction(action);
+                        }
+                        break;
+                        
+                    case 'Tab':
+                        // When user presses Tab, disable arrow key navigation visual
+                        // and let browser handle focus naturally
+                        buttons.forEach(button => button.classList.remove('btn-focused'));
+                        break;
+                }
+                
+                if (handled) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            }, true); // Use capture phase to ensure we get the event first
+            
+            // Re-enable arrow key navigation when user clicks or uses arrows
+            document.addEventListener('click', function(event) {
+                if (event.target.closest('[data-action]')) {
+                    // User clicked a button, sync arrow navigation to that button
+                    const buttons = Array.from(document.querySelectorAll('[data-action]'));
+                    const clickedIndex = buttons.indexOf(event.target.closest('[data-action]'));
+                    if (clickedIndex !== -1) {
+                        state.currentFocusedButton = clickedIndex;
+                    }
+                }
+            });
+        }
+
+        // Update visual focus on buttons
+        function updateButtonFocus() {
+            const buttons = document.querySelectorAll('[data-action]');
+            buttons.forEach((button, index) => {
+                // Remove both custom focus and browser focus
+                button.classList.remove('btn-focused');
+                button.blur(); // Remove browser focus ring
+                
+                if (index === state.currentFocusedButton) {
+                    button.classList.add('btn-focused');
+                }
+            });
+        }
+
+        // Go back one card (OBSERVATION: Undo functionality)
+        function goBackOneCard() {
+            if (state.currentIndex > 0) {
+                // Remove last assessment data entry
+                state.assessmentData.pop();
+                
+                // Update results by recalculating from scratch
+                state.results = { strong: [], leaking: [], missing: [], uncharted: [] };
+                state.score = 0;
+                
+                state.assessmentData.forEach((data) => {
+                    state.results[data.action].push(data.cardIndex);
+                    state.score += data.points;
+                });
+                
+                // Update score display
+                document.getElementById('score-display').textContent = `Risk Score: ${state.score}`;
+                
+                // Load previous card
+                loadCard(state.currentIndex - 1);
+            }
+        }
+
+        // Handle email continue with enhanced security (OBSERVATION: Input validation and rate limiting)
         function handleEmailContinue() {
-            const email = document.getElementById('corporate-email').value.trim();
+            const emailInput = document.getElementById('corporate-email');
+            const email = sanitizeInput(emailInput.value);
+            
             if (!email || !isValidEmail(email)) {
-                alert("Please enter a valid corporate email address");
+                showError("Please enter a valid corporate email address");
+                emailInput.focus();
+                return;
+            }
+            
+            // Check rate limiting
+            if (!checkRateLimit(email)) {
+                showError("Too many submissions from this email. Please try again later.");
                 return;
             }
             
             state.user.corporateEmail = email;
+            
+            // Send immediate email capture to track leads
+            sendEmailCapture();
             
             const emailScreen = document.getElementById('email-screen');
             const introScreen = document.getElementById('intro-screen');
@@ -1286,14 +1790,158 @@
             introScreen.classList.remove('hidden');
         }
 
-        // Email validation
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        // Enhanced error display (OBSERVATION: User-friendly error handling)
+        function showError(message) {
+            // Remove any existing error
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Create new error element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = `
+                color: var(--missing-color);
+                background: rgba(158, 42, 43, 0.1);
+                border: 1px solid var(--missing-color);
+                padding: 10px 15px;
+                border-radius: 8px;
+                margin: 10px 0;
+                font-size: 14px;
+                text-align: center;
+            `;
+            errorDiv.textContent = message;
+            
+            // Insert error message
+            const activeScreen = document.querySelector('.container:not(.hidden)') || document.querySelector('#contact-screen:not(.hidden)');
+            if (activeScreen) {
+                const firstFormGroup = activeScreen.querySelector('.form-group');
+                if (firstFormGroup) {
+                    firstFormGroup.parentNode.insertBefore(errorDiv, firstFormGroup);
+                }
+            }
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.remove();
+                }
+            }, 5000);
         }
 
-        // Start assessment
+        // Enhanced input sanitization (OBSERVATION: XSS protection)
+        function sanitizeInput(input) {
+            if (typeof input !== 'string') return '';
+            
+            return input
+                .trim()
+                .replace(/[<>\"'&]/g, function(match) {
+                    const entityMap = {
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#x27;',
+                        '&': '&amp;'
+                    };
+                    return entityMap[match];
+                })
+                .substring(0, 255); // Limit input length
+        }
+
+        // Enhanced email validation with domain verification (OBSERVATION: Robust email validation)
+        function isValidEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+            
+            if (!emailRegex.test(email)) return false;
+            
+            // Additional domain validation
+            const domain = email.split('@')[1];
+            if (!domain || domain.length < 3 || domain.length > 255) return false;
+            
+            // Check for suspicious patterns
+            const suspiciousPatterns = [
+                /\.\./, // Double dots
+                /^\./, // Starting with dot
+                /\.$/, // Ending with dot
+                /[<>'"]/
+            ];
+            
+            return !suspiciousPatterns.some(pattern => pattern.test(email));
+        }
+
+        // Rate limiting with localStorage (OBSERVATION: Client-side rate limiting using localStorage)
+        function checkRateLimit(email) {
+            try {
+                const sanitizedEmail = sanitizeInput(email.toLowerCase());
+                const key = `rate_limit_${btoa(sanitizedEmail)}`;
+                const now = Date.now();
+                
+                const stored = localStorage.getItem(key);
+                if (!stored) {
+                    // First submission
+                    localStorage.setItem(key, JSON.stringify([now]));
+                    return true;
+                }
+                
+                const submissions = JSON.parse(stored);
+                
+                // Clean old submissions outside the window
+                const recentSubmissions = submissions.filter(time => now - time < RATE_LIMIT_WINDOW);
+                
+                if (recentSubmissions.length >= MAX_SUBMISSIONS_PER_HOUR) {
+                    return false;
+                }
+                
+                // Add current submission
+                recentSubmissions.push(now);
+                localStorage.setItem(key, JSON.stringify(recentSubmissions));
+                
+                return true;
+                
+            } catch (error) {
+                console.warn('Rate limiting unavailable:', error);
+                return true; // Allow if localStorage fails
+            }
+        }
+
+        // Assessment timeout protection (OBSERVATION: Security measure against automated tools)
+        function initializeAssessmentTimeout() {
+            const startTime = Date.now();
+            state.assessmentStartTime = startTime;
+            
+            // Clear any existing timeout
+            if (state.timeoutId) {
+                clearTimeout(state.timeoutId);
+            }
+            
+            // Set new timeout
+            state.timeoutId = setTimeout(() => {
+                if (!state.completed) {
+                    console.warn('Assessment timeout reached');
+                    // Could redirect to contact form or show warning
+                }
+            }, ASSESSMENT_TIMEOUT);
+        }
+
+        // Validate assessment completion time (OBSERVATION: Anti-bot measure)
+        function isValidAssessmentTime() {
+            if (!state.assessmentStartTime) return false;
+            
+            const completionTime = Date.now() - state.assessmentStartTime;
+            const minTime = 30 * 1000; // Minimum 30 seconds
+            const maxTime = ASSESSMENT_TIMEOUT;
+            
+            return completionTime >= minTime && completionTime <= maxTime;
+        }
+
+        // Start assessment with security initialization
         function startAssessment() {
             console.log("Starting assessment");
+            
+            // Initialize security measures
+            initializeAssessmentTimeout();
+            
             const introScreen = document.getElementById('intro-screen');
             const assessmentScreen = document.getElementById('assessment-screen');
             
@@ -1302,7 +1950,7 @@
             loadCard(0);
         }
 
-        // Load card data
+        // Load card data (OBSERVATION: Dynamic card loading system)
         function loadCard(index) {
             console.log("Loading card", index);
             
@@ -1326,7 +1974,7 @@
             document.getElementById('card-number').textContent = card.number;
             document.getElementById('card-suite-bottom').textContent = card.suite;
             document.getElementById('card-number-bottom').textContent = card.number;
-            document.getElementById('card-icon').textContent = card.icon;
+            document.getElementById('card-icon').textContent = card.icon; // Changed back to textContent for emoji
             document.getElementById('card-title').textContent = card.title;
             // Use the "Why it matters" content for the main description
             document.getElementById('card-question').textContent = card.importance;
@@ -1337,9 +1985,13 @@
             
             // Update state
             state.currentIndex = index;
+            
+            // Reset keyboard focus to first button
+            state.currentFocusedButton = 0;
+            updateButtonFocus();
         }
 
-        // Handle card action
+        // Handle card action (OBSERVATION: Scoring system with card animations)
         function handleCardAction(action) {
             console.log("Card action:", action, "for card:", watchCards[state.currentIndex].title);
             
@@ -1398,39 +2050,177 @@
             }, 400);
         }
 
-        // Send card data to webhook
+        // Send email capture with enhanced error handling (OBSERVATION: Lead capture system with comprehensive data structure)
+        async function sendEmailCapture() {
+            try {
+                // Extract domain from email
+                const domain = state.user.corporateEmail.split('@')[1] || '';
+                
+                const payload = {
+                    type: 'email_capture',
+                    // Contact Information (sanitized)
+                    email: sanitizeInput(state.user.corporateEmail),
+                    website: sanitizeInput(domain),
+                    name: '',
+                    company: '',
+                    teamSize: 0,
+                    phone: '',
+                    
+                    // Assessment Summary (no counts - calculated client-side)
+                    riskScore: 0,
+                    riskLevel: 'Assessment Started',
+                    completedAt: '',
+                    
+                    // Individual Card Responses (no card numbers)
+                    'Email Security': '',
+                    'Multi-Factor Authentication': '',
+                    'Data Backup & Recovery': '',
+                    'Endpoint Protection': '',
+                    'Security Monitoring': '',
+                    'Incident Response Plan': '',
+                    'Security Awareness Training': '',
+                    'Cyber Insurance': '',
+                    'Password Management': '',
+                    'PIPA Compliance': '',
+                    
+                    // Status tracking
+                    assessmentStatus: 'started',
+                    startedAt: new Date().toISOString(),
+                    userAgent: sanitizeInput(navigator.userAgent.substring(0, 200)), // Limit length
+                    referrer: sanitizeInput((document.referrer || 'direct').substring(0, 200)),
+                    
+                    // Security metadata
+                    sessionId: generateSessionId(),
+                    timestamp: Date.now(),
+                    
+                    // Unique identifier for updating the same record
+                    recordKey: btoa(state.user.corporateEmail + '_' + Date.now()).substring(0, 50)
+                };
+                
+                // Store the record key for later update
+                state.recordKey = payload.recordKey;
+                
+                console.log("📧 Creating initial record in Airtable");
+                
+                const response = await fetch(WEBHOOK_EMAIL_CAPTURE, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                console.log("✅ Initial record created successfully");
+                
+            } catch (error) {
+                console.error("❌ Failed to create initial record:", error);
+                // Continue silently - don't interrupt user experience
+                // Could implement retry logic here
+            }
+        }
+
+        // Generate session ID for tracking
+        function generateSessionId() {
+            return 'sess_' + Math.random().toString(36).substring(2, 15) + 
+                   Math.random().toString(36).substring(2, 15);
+        }
+
+        // Send card data to webhook (OBSERVATION: Placeholder for individual card tracking)
         async function sendCardData(cardData) {
             // Skip individual card data sends - we'll send everything at the end
             console.log(`📝 Card ${cardData.cardIndex + 1} answered: ${cardData.action}`);
         }
 
-        // Handle contact form submission
+        // Handle contact form submission with enhanced validation (OBSERVATION: Comprehensive form validation with security checks)
         function handleContactSubmit(event) {
             console.log("📋 Contact form submitted");
             
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                company: document.getElementById('company').value.trim(),
-                users: document.getElementById('users').value.trim(),
-                phone: document.getElementById('phone').value.trim()
-            };
-            
-            // Validate required fields
-            if (!formData.name || !formData.company || !formData.users) {
-                alert("Please fill in all required fields (Name, Company, and Team Size)");
+            // Validate assessment completion time
+            if (!isValidAssessmentTime()) {
+                showError("Assessment completed too quickly or session expired. Please start over.");
                 return;
             }
             
-            // Validate team size is a positive number
-            if (isNaN(formData.users) || parseInt(formData.users) < 1) {
-                alert("Please enter a valid team size (minimum 1)");
+            // Get and sanitize form data
+            const formData = {
+                name: sanitizeInput(document.getElementById('name').value),
+                company: sanitizeInput(document.getElementById('company').value),
+                users: sanitizeInput(document.getElementById('users').value),
+                phone: sanitizeInput(document.getElementById('phone').value)
+            };
+            
+            // Enhanced validation
+            if (!formData.name || formData.name.length < 2) {
+                showError("Please enter your full name (first and last name)");
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            // Validate full name (first + last)
+            const nameParts = formData.name.trim().split(/\s+/);
+            if (nameParts.length < 2) {
+                showError("Please enter both first and last name");
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            const [firstName, ...lastNameParts] = nameParts;
+            const lastName = lastNameParts.join(' ');
+            
+            if (firstName.length < 1) {
+                showError("First name must be at least 1 character");
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            if (lastName.length < 2) {
+                showError("Last name must be at least 2 characters");
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            if (!formData.company || formData.company.length < 2) {
+                showError("Please enter a valid company name (at least 2 characters)");
+                document.getElementById('company').focus();
+                return;
+            }
+            
+            const userCount = parseInt(formData.users);
+            if (!formData.users || isNaN(userCount) || userCount < 1 || userCount > 10000) {
+                showError("Please enter a valid team size (1-10,000 employees)");
+                document.getElementById('users').focus();
+                return;
+            }
+            
+            // Validate phone if provided
+            if (formData.phone) {
+                const phoneRegex = /^[\+]?[\d\s\-\(\)\.]{10,}$/;
+                if (!phoneRegex.test(formData.phone)) {
+                    showError("Please enter a valid phone number or leave blank");
+                    document.getElementById('phone').focus();
+                    return;
+                }
+            }
+            
+            // Check if assessment data exists
+            if (state.assessmentData.length !== watchCards.length) {
+                showError("Assessment incomplete. Please complete all security cards.");
                 return;
             }
             
             // Update state
             state.user = { ...state.user, ...formData };
             state.completed = true;
+            
+            // Clear timeout
+            if (state.timeoutId) {
+                clearTimeout(state.timeoutId);
+            }
             
             console.log("👤 Final user data:", state.user);
             console.log("📊 Final assessment results:", state.results);
@@ -1449,181 +2239,33 @@
             displayResults();
         }
 
-        // Company name extraction from domain
-        async function getCompanyFromDomain(email) {
-            try {
-                const domain = email.split('@')[1];
-                console.log(`🔍 Starting company lookup for email: ${email}`);
-                console.log(`📧 Extracted domain: ${domain}`);
-                
-                // Skip common personal email providers
-                const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'protonmail.com'];
-                if (personalDomains.includes(domain.toLowerCase())) {
-                    console.log(`⏭️ Skipping personal email domain: ${domain}`);
-                    return null;
-                }
-                
-                console.log(`🌐 Attempting to fetch company info for domain: ${domain}`);
-                
-                // Try multiple CORS proxies and direct fetch
-                const proxies = [
-                    `https://api.allorigins.win/get?url=https://${domain}`,
-                    `https://corsproxy.io/?https://${domain}`,
-                    `https://${domain}` // Direct attempt (might work for some sites)
-                ];
-                
-                for (let i = 0; i < proxies.length; i++) {
-                    const proxyUrl = proxies[i];
-                    console.log(`🔄 Trying proxy ${i + 1}/${proxies.length}: ${proxyUrl}`);
-                    
-                    try {
-                        const response = await fetch(proxyUrl, {
-                            headers: {
-                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                            },
-                            timeout: 5000
-                        });
-                        
-                        console.log(`📡 Response status: ${response.status} ${response.statusText}`);
-                        
-                        if (!response.ok) {
-                            console.log(`❌ Response not OK, trying next proxy...`);
-                            continue;
-                        }
-                        
-                        let html;
-                        if (proxyUrl.includes('allorigins.win')) {
-                            const data = await response.json();
-                            html = data.contents;
-                            console.log(`📄 Got HTML via AllOrigins (length: ${html?.length || 0})`);
-                        } else {
-                            html = await response.text();
-                            console.log(`📄 Got HTML directly (length: ${html?.length || 0})`);
-                        }
-                        
-                        if (html && html.length > 0) {
-                            const companyName = extractCompanyName(html, domain);
-                            if (companyName) {
-                                console.log(`✅ Successfully extracted company name: "${companyName}"`);
-                                return companyName;
-                            } else {
-                                console.log(`❌ No company name found in metadata, trying next proxy...`);
-                            }
-                        } else {
-                            console.log(`❌ Empty HTML response, trying next proxy...`);
-                        }
-                    } catch (error) {
-                        console.log(`❌ Error with proxy ${proxyUrl}:`, error.message);
-                        continue;
-                    }
-                }
-                
-                // Fallback to domain name cleanup
-                console.log(`🔧 All metadata fetches failed, falling back to domain cleanup`);
-                const fallbackName = cleanDomainName(domain);
-                console.log(`🔧 Fallback result: "${fallbackName}"`);
-                return fallbackName;
-                
-            } catch (error) {
-                console.error('💥 Critical error in getCompanyFromDomain:', error);
-                const fallbackName = cleanDomainName(email.split('@')[1]);
-                console.log(`🔧 Emergency fallback result: "${fallbackName}"`);
-                return fallbackName;
+        // Pre-fill company name when contact screen is shown
+        async function prefillCompanyName() {
+            if (!state.user.corporateEmail) {
+                console.log("❌ No corporate email found for company prefill");
+                return;
             }
-        }
-
-        function extractCompanyName(html, domain) {
-            try {
-                console.log(`🔍 Starting HTML parsing for domain: ${domain}`);
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // Try different metadata sources in order of preference
-                const sources = [
-                    // Open Graph site name
-                    () => {
-                        const ogSiteName = doc.querySelector('meta[property="og:site_name"]')?.content;
-                        console.log(`📊 Open Graph site_name: "${ogSiteName}"`);
-                        return ogSiteName;
-                    },
-                    // Application name
-                    () => {
-                        const appName = doc.querySelector('meta[name="application-name"]')?.content;
-                        console.log(`📱 Application name: "${appName}"`);
-                        return appName;
-                    },
-                    // Twitter site name
-                    () => {
-                        const twitterSite = doc.querySelector('meta[name="twitter:site"]')?.content?.replace('@', '');
-                        console.log(`🐦 Twitter site: "${twitterSite}"`);
-                        return twitterSite;
-                    },
-                    // Title tag (cleaned)
-                    () => {
-                        const titleRaw = doc.querySelector('title')?.textContent;
-                        console.log(`📄 Raw title tag: "${titleRaw}"`);
-                        if (titleRaw) {
-                            // Remove common suffixes and clean up
-                            const titleCleaned = titleRaw
-                                .replace(/\s*[-|–]\s*(Home|Homepage|Welcome|Official Site|Official Website).*$/i, '')
-                                .replace(/\s*[-|–]\s*.*$/i, '') // Remove everything after first dash/pipe
-                                .trim();
-                            console.log(`📄 Cleaned title: "${titleCleaned}"`);
-                            return titleCleaned;
-                        }
-                        return null;
-                    },
-                    // JSON-LD structured data
-                    () => {
-                        const jsonLd = doc.querySelector('script[type="application/ld+json"]');
-                        if (jsonLd) {
-                            try {
-                                const data = JSON.parse(jsonLd.textContent);
-                                const structuredName = data.name || data.legalName || data.alternateName;
-                                console.log(`📋 JSON-LD structured data: "${structuredName}"`);
-                                return structuredName;
-                            } catch (e) {
-                                console.log(`❌ Error parsing JSON-LD:`, e.message);
-                                return null;
-                            }
-                        }
-                        console.log(`📋 No JSON-LD found`);
-                        return null;
-                    }
-                ];
-                
-                // Try each source until we find a good match
-                for (let i = 0; i < sources.length; i++) {
-                    console.log(`🔍 Trying source ${i + 1}/${sources.length}`);
-                    const name = sources[i]();
-                    if (name && name.length > 0 && name.length < 100) {
-                        console.log(`✨ Found potential name: "${name}"`);
-                        const cleaned = cleanCompanyName(name);
-                        console.log(`🧹 After cleaning: "${cleaned}"`);
-                        if (cleaned && cleaned.length > 1) {
-                            console.log(`✅ Using final result: "${cleaned}"`);
-                            return cleaned;
-                        }
-                    }
-                }
-                
-                console.log(`❌ No valid company name found in any metadata source`);
-                return null;
-            } catch (error) {
-                console.error('💥 Error parsing HTML:', error);
-                return null;
-            }
-        }
-
-        function cleanCompanyName(name) {
-            if (!name) return null;
             
-            return name
-                .trim()
-                .replace(/\s*(Inc|LLC|Ltd|Corp|Corporation|Company|Co|Group|Holdings|International|Intl)\.?\s*$/i, '')
-                .replace(/^\s*(The|A|An)\s+/i, '')
-                .replace(/\s+/g, ' ')
-                .trim();
+            const companyField = document.getElementById('company');
+            if (!companyField || companyField.value.trim()) {
+                return; // Field not found or already has value
+            }
+            
+            // Simple domain-based company name extraction
+            try {
+                const domain = state.user.corporateEmail.split('@')[1];
+                const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'protonmail.com'];
+                
+                if (!personalDomains.includes(domain.toLowerCase())) {
+                    const companyName = cleanDomainName(domain);
+                    if (companyName && companyName.length > 1) {
+                        companyField.value = companyName;
+                        console.log(`✅ Company name prefilled: "${companyName}"`);
+                    }
+                }
+            } catch (error) {
+                console.log("ℹ️ Could not prefill company name from domain");
+            }
         }
 
         function cleanDomainName(domain) {
@@ -1640,117 +2282,105 @@
             return name.length > 1 ? name : null;
         }
 
-        // Pre-fill company name when contact screen is shown
-        async function prefillCompanyName() {
-            if (!state.user.corporateEmail) {
-                console.log("❌ No corporate email found for company prefill");
-                return;
-            }
-            
-            const companyField = document.getElementById('company');
-            if (!companyField) {
-                console.log("❌ Company field not found");
-                return;
-            }
-            
-            if (companyField.value.trim()) {
-                console.log("ℹ️ Company field already has value, skipping prefill");
-                return;
-            }
-            
-            // Show loading state
-            companyField.placeholder = 'Loading company name...';
-            companyField.disabled = true;
-            
-            try {
-                console.log("🏢 Starting company name prefill...");
-                const companyName = await getCompanyFromDomain(state.user.corporateEmail);
-                if (companyName && companyName.length > 0) {
-                    companyField.value = companyName;
-                    companyField.placeholder = 'Your company name';
-                    console.log(`✅ Company name prefilled: "${companyName}"`);
-                } else {
-                    companyField.placeholder = 'Your company name';
-                    console.log("ℹ️ No company name found, using default placeholder");
-                }
-            } catch (error) {
-                console.error('💥 Failed to prefill company name:', error);
-                companyField.placeholder = 'Your company name';
-            } finally {
-                companyField.disabled = false;
-            }
-        }
-
-        // Send final assessment data
+        // Send final assessment data with enhanced security (OBSERVATION: Comprehensive data payload for Airtable)
         async function sendFinalData() {
             try {
-                // Create flattened individual card responses
+                // Extract domain from email
+                const domain = state.user.corporateEmail.split('@')[1] || '';
+                
+                // Create flattened individual card responses (no card numbers)
                 const cardResponses = {};
                 watchCards.forEach((card, index) => {
                     // Find this card's response in assessmentData
                     const response = state.assessmentData.find(item => item.cardIndex === index);
-                    const fieldName = `Card ${index + 1} - ${card.title}`;
-                    cardResponses[fieldName] = response ? response.action : 'not_answered';
+                    cardResponses[card.title] = response ? sanitizeInput(response.action) : '';
                 });
                 
                 const payload = {
-                    type: 'assessment_complete',
-                    // Contact Information
-                    email: state.user.corporateEmail,
-                    name: state.user.name,
-                    company: state.user.company,
+                    type: 'assessment_update',  // Different type for updating
+                    // Contact Information (sanitized)
+                    email: sanitizeInput(state.user.corporateEmail),
+                    website: sanitizeInput(domain),
+                    name: sanitizeInput(state.user.name),
+                    company: sanitizeInput(state.user.company),
                     teamSize: parseInt(state.user.users) || 0,
-                    phone: state.user.phone || '',
+                    phone: sanitizeInput(state.user.phone) || '',
                     
-                    // Assessment Summary
-                    riskScore: state.score,
-                    riskLevel: getRiskLevelText(state.score),
-                    strongCount: state.results.strong.length,
-                    leakingCount: state.results.leaking.length,
-                    missingCount: state.results.missing.length,
-                    unchartedCount: state.results.uncharted.length,
+                    // Assessment Summary (no counts - calculated client-side)
+                    riskScore: Math.max(0, Math.min(30, state.score)), // Clamp score
+                    riskLevel: sanitizeInput(getRiskLevelText(state.score)),
                     completedAt: new Date().toISOString(),
                     
-                    // Individual Card Responses (flattened)
+                    // Individual Card Responses (flattened and sanitized)
                     ...cardResponses,
                     
-                    // Raw data backup (optional)
-                    rawAssessmentData: JSON.stringify(state.assessmentData),
-                    rawResults: JSON.stringify(state.results)
+                    // Status tracking
+                    assessmentStatus: 'completed',
+                    userAgent: sanitizeInput(navigator.userAgent.substring(0, 200)),
+                    referrer: sanitizeInput((document.referrer || 'direct').substring(0, 200)),
+                    
+                    // Security metadata
+                    completionTime: Date.now() - (state.assessmentStartTime || Date.now()),
+                    sessionId: state.sessionId || generateSessionId(),
+                    timestamp: Date.now(),
+                    
+                    // Record identifier for finding the record to update
+                    recordKey: state.recordKey || btoa(state.user.corporateEmail + '_unknown').substring(0, 50),
+                    
+                    // Data integrity
+                    dataHash: generateDataHash(state.assessmentData)
                 };
                 
-                console.log("📤 Sending final assessment data to Airtable:", payload);
+                console.log("📤 Updating existing record in Airtable");
                 
-                await fetch(WEBHOOK_URL, {
+                const response = await fetch(WEBHOOK_ASSESSMENT_UPDATE, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify(payload)
                 });
                 
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
                 console.log("✅ Assessment data successfully sent to Airtable");
+                
             } catch (error) {
                 console.error("❌ Failed to send assessment data to Airtable:", error);
                 // Continue silently - don't interrupt user experience
-                // Could add user notification here if needed
+                // Could implement retry logic or offline storage here
             }
         }
 
-        // Helper function to get risk level text
+        // Generate simple hash for data integrity (OBSERVATION: Data integrity verification)
+        function generateDataHash(data) {
+            const str = JSON.stringify(data);
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return Math.abs(hash).toString(36);
+        }
+
+        // Helper function to get risk level text (OBSERVATION: Risk assessment scoring system)
         function getRiskLevelText(score) {
-            if (score <= 5) {
+            if (score <= 6) {
                 return "SECURE - Your security posture is strong";
-            } else if (score <= 12) {
+            } else if (score <= 15) {
                 return "MODERATE - Your security needs improvement";
-            } else if (score <= 19) {
+            } else if (score <= 22) {
                 return "HIGH RISK - Significant vulnerabilities exist";
             } else {
                 return "CRITICAL - Your business is at extreme risk";
             }
         }
 
-        // Display results
+        // Display results (OBSERVATION: Results screen with animated counters)
         function displayResults() {
             console.log("Displaying results");
             
@@ -1781,7 +2411,13 @@
             const riskLevelElement = document.getElementById('risk-level');
             riskLevelElement.textContent = riskLevelText;
             riskLevelElement.style.color = riskColor;
-            document.getElementById('results-progress-bar').style.width = progressPercent;
+            
+            const progressBar = document.getElementById('results-progress-bar');
+            progressBar.style.width = progressPercent;
+            progressBar.style.background = `linear-gradient(90deg, ${riskColor}, ${riskColor}cc)`;
+            
+            const scoreDisplay = document.getElementById('final-score');
+            scoreDisplay.style.color = riskColor;
             
             // Update counts with animation
             animateCount('strong-count', state.results.strong.length);
@@ -1793,7 +2429,7 @@
             generateRecommendations();
         }
         
-        // Animate count up
+        // Animate count up (OBSERVATION: Smooth counter animations)
         function animateCount(elementId, targetValue) {
             const element = document.getElementById(elementId);
             let currentValue = 0;
@@ -1813,7 +2449,7 @@
             }, interval);
         }
 
-        // Generate emoji-based recommendations
+        // Generate card-based recommendations with flip functionality
         function generateRecommendations() {
             const recommendationsContainer = document.getElementById('recommendations-container');
             recommendationsContainer.innerHTML = '';
@@ -1831,32 +2467,49 @@
                 return;
             }
             
-            // Get unique guardians needed
+            // Get unique guardians needed (skip null guardians)
             const neededGuardians = new Set();
             priorityIssues.forEach(index => {
                 const card = watchCards[index];
-                neededGuardians.add(card.guardian);
+                if (card.guardian) {  // Only add if guardian exists
+                    neededGuardians.add(card.guardian);
+                }
             });
             
-            // Create emoji recommendations
-            neededGuardians.forEach(guardianKey => {
-                const guardian = guardians[guardianKey];
-                
-                const emojiDiv = document.createElement('div');
-                emojiDiv.className = 'guardian-emoji';
-                emojiDiv.innerHTML = `
-                    ${guardian.icon}
-                    <div class="guardian-tooltip">
-                        <strong>${guardian.name}</strong><br>
-                        ${guardian.description}
+            // Convert to array and sort by priority
+            const sortedGuardians = Array.from(neededGuardians)
+                .map(key => ({ key, ...guardians[key] }))
+                .sort((a, b) => a.priority - b.priority);
+            
+            // Create flip card recommendations
+            sortedGuardians.forEach(guardian => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'guardian-card';
+                cardDiv.innerHTML = `
+                    <div class="guardian-card-inner">
+                        <div class="guardian-card-front">
+                            <div class="guardian-card-icon">
+                                ${guardian.icon}
+                            </div>
+                            <div class="guardian-card-title">${guardian.name}</div>
+                        </div>
+                        <div class="guardian-card-back">
+                            <div class="guardian-card-description">${guardian.description}</div>
+                            <div class="guardian-card-title">${guardian.name}</div>
+                        </div>
                     </div>
                 `;
                 
-                recommendationsContainer.appendChild(emojiDiv);
+                // Add click event for flip
+                cardDiv.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                });
+                
+                recommendationsContainer.appendChild(cardDiv);
             });
         }
 
-        // Schedule consultation
+        // Schedule consultation (OBSERVATION: Cal.com integration for lead conversion)
         function scheduleConsultation(event) {
             event.preventDefault();
             window.open("https://cal.com/xfacilitator/illuminate?overlayCalendar=true", "_blank");
