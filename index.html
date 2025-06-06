@@ -2295,12 +2295,14 @@
                 // Extract domain from email
                 const domain = state.user.corporateEmail.split('@')[1] || '';
                 
-                // Create flattened individual card responses (no card numbers)
+                // Create flattened individual card responses (capitalized)
                 const cardResponses = {};
                 watchCards.forEach((card, index) => {
                     // Find this card's response in assessmentData
                     const response = state.assessmentData.find(item => item.cardIndex === index);
-                    cardResponses[card.title] = response ? sanitizeInput(response.action) : '';
+                    const action = response ? response.action : '';
+                    // Capitalize first letter
+                    cardResponses[card.title] = action ? action.charAt(0).toUpperCase() + action.slice(1) : '';
                 });
                 
                 const payload = {
